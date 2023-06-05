@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="FilmTestTask" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="AUK-fT-nAx" id="hu6-F6-YwU"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChH-nC-HAM">
+                    <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                    <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <items>
+                        <navigationItem leftItemsSupplementBackButton="YES" style="editor" id="uwd-hr-fPv" customClass="TestItem" customModule="FilmTestTask" customModuleProvider="target">
+                            <barButtonItem key="leftBarButtonItem" title="ппроп" id="WCU-iI-Cdh">
+                                <view key="customView" contentMode="scaleToFill" id="9xM-Vy-zzE">
+                                    <rect key="frame" x="20" y="5.5" width="178" height="33"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                    <rect key="contentStretch" x="0.050000000000000003" y="0.0" width="1" height="1"/>
+                                </view>
+                            </barButtonItem>
+                            <barButtonItem key="rightBarButtonItem" title="Item" image="search" id="poQ-cK-V8z"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="AUK-fT-nAx">
+                    <rect key="frame" x="0.0" y="92" width="414" height="770"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="n7N-gc-lGL">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="AUK-fT-nAx" secondAttribute="bottom" id="ABp-Xh-Ix6"/>
+                <constraint firstItem="AUK-fT-nAx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Ayn-LX-vZO"/>
+                <constraint firstItem="ChH-nC-HAM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="K90-m9-bGP"/>
+                <constraint firstItem="AUK-fT-nAx" firstAttribute="top" secondItem="ChH-nC-HAM" secondAttribute="bottom" id="NPg-4p-g5S"/>
+                <constraint firstItem="AUK-fT-nAx" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Nvd-yi-rTL"/>
+                <constraint firstAttribute="trailing" secondItem="ChH-nC-HAM" secondAttribute="trailing" id="RI0-d3-1as"/>
+                <constraint firstItem="AUK-fT-nAx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ahG-o2-eNZ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AUK-fT-nAx" secondAttribute="trailing" id="hTW-Nz-CoW"/>
+                <constraint firstItem="ChH-nC-HAM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="-44" id="qHi-1d-b7T"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <point key="canvasLocation" x="124.6376811594203" y="-12.053571428571429"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="search" width="20" height="20"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

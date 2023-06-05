@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="gTV-IL-0wX" customClass="MovieCell" customModule="FilmTestTask" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="316" height="121"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="316" height="121"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RKM-pc-fhS">
+                        <rect key="frame" x="0.0" y="0.0" width="316" height="121"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cz2-Xj-5Lk">
+                                <rect key="frame" x="15" y="15" width="40" height="91"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="DnL-Tv-ze3"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MmQ-pQ-N6C">
+                                <rect key="frame" x="70" y="26" width="231" height="68"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Movie title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NmO-1v-eDm" userLabel="Movie title">
+                                        <rect key="frame" x="0.0" y="0.0" width="231" height="54"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="film genre(2000)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCk-o2-FI1" userLabel="Film genre">
+                                        <rect key="frame" x="0.0" y="54" width="231" height="14"/>
+                                        <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="14"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MmQ-pQ-N6C" firstAttribute="top" secondItem="RKM-pc-fhS" secondAttribute="top" constant="26" id="35X-po-FR8"/>
+                            <constraint firstAttribute="bottom" secondItem="cz2-Xj-5Lk" secondAttribute="bottom" constant="15" id="700-5S-xkF"/>
+                            <constraint firstItem="MmQ-pQ-N6C" firstAttribute="leading" secondItem="cz2-Xj-5Lk" secondAttribute="trailing" constant="15" id="8Ro-1O-6jF"/>
+                            <constraint firstItem="NmO-1v-eDm" firstAttribute="top" secondItem="cz2-Xj-5Lk" secondAttribute="top" id="DKz-uL-h0s"/>
+                            <constraint firstItem="cz2-Xj-5Lk" firstAttribute="leading" secondItem="RKM-pc-fhS" secondAttribute="leading" constant="15" id="M0a-Cs-4um"/>
+                            <constraint firstAttribute="trailing" secondItem="MmQ-pQ-N6C" secondAttribute="trailing" constant="15" id="NRw-kW-djX"/>
+                            <constraint firstItem="fCk-o2-FI1" firstAttribute="bottom" secondItem="cz2-Xj-5Lk" secondAttribute="bottom" id="QGB-3f-cb6"/>
+                            <constraint firstItem="cz2-Xj-5Lk" firstAttribute="top" secondItem="RKM-pc-fhS" secondAttribute="top" constant="15" id="aJg-bF-muN"/>
+                            <constraint firstAttribute="bottom" secondItem="MmQ-pQ-N6C" secondAttribute="bottom" constant="27" id="aeK-CQ-wNS"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="RKM-pc-fhS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="0N8-De-r79"/>
+                <constraint firstItem="RKM-pc-fhS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="I13-Ke-daJ"/>
+                <constraint firstAttribute="bottom" secondItem="RKM-pc-fhS" secondAttribute="bottom" id="MQo-7j-Ot5"/>
+                <constraint firstAttribute="trailing" secondItem="RKM-pc-fhS" secondAttribute="trailing" id="TeG-za-HcD"/>
+            </constraints>
+            <size key="customSize" width="316" height="121"/>
+            <connections>
+                <outlet property="filmGenre" destination="fCk-o2-FI1" id="009-wU-fnH"/>
+                <outlet property="movieTitle" destination="NmO-1v-eDm" id="CSb-fy-eta"/>
+                <outlet property="poster" destination="cz2-Xj-5Lk" id="7vX-uy-ASN"/>
+            </connections>
+            <point key="canvasLocation" x="329.7709923664122" y="13.732394366197184"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

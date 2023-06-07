@@ -10,19 +10,19 @@ import UIKit
 final class MyCompositionalLayout {
     
      func setLayoutCollection() -> UICollectionViewLayout {
-        let itemsSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+         let itemsSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(100))
         
         let items = NSCollectionLayoutItem(layoutSize: itemsSize)
         
-        let groupsSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.5))
+         let groupsSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(100))
         
         let groups = NSCollectionLayoutGroup.horizontal(layoutSize: groupsSize, subitem: items, count: 1)
         
         let section = NSCollectionLayoutSection(group: groups)
+         
+        section.interGroupSpacing = 15
         
-        section.interGroupSpacing = 18
-        
-        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 0, trailing: 15)
         
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout

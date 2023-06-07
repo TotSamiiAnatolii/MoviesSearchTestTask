@@ -25,7 +25,7 @@ final class ModuleBuilder: AssemblyBuilderProtocol {
     
     func createDetailMovie(id: String, router: RouterProtocol) -> UIViewController {
         let networkService = NetworkManager()
-        let presenter = DetailMoviePresenter(id: String, networkService: networkService)
+        let presenter = DetailMoviePresenter(id: id, networkService: networkService)
         let view = DetailViewController(presenter: presenter)
         presenter.view = view
         return view

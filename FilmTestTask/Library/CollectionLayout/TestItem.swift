@@ -25,7 +25,6 @@ class TestItem: UINavigationItem {
     
     
     func set() {
-        titleView1.backgroundColor = .red
         self.titleView = titleView1
     }
 }

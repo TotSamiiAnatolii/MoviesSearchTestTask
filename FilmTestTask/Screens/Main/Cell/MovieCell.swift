@@ -13,7 +13,7 @@ final class MovieCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-      
+        self.contentView.backgroundColor = .red
     }
     
     override func layoutSubviews() {
@@ -30,8 +30,8 @@ final class MovieCell: UICollectionViewCell {
     
     private func setupShadowCell() {
         let radius: CGFloat = 20
-        layer.shadowColor = #colorLiteral(red: 0.8201048466, green: 0.8201048466, blue: 0.8201048466, alpha: 1)
-        layer.shadowOffset = CGSize(width: 1, height: 3)
+        layer.shadowColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+        layer.shadowOffset = CGSize(width: 1, height: 6)
         layer.shadowRadius = 7.0
         layer.shadowOpacity = 1
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: radius).cgPath

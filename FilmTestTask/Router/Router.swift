@@ -21,6 +21,10 @@ protocol RouterProtocol: RouterMain {
 }
 
 final class Router: RouterProtocol {
+    func showMovie(model: DetailModel) {
+        
+    }
+    
  
     var navigationController: UINavigationController
     
@@ -37,7 +41,7 @@ final class Router: RouterProtocol {
     }
     
     func showMovie(id: String) {
-        let detailMovieVC = assemblyBuilder.createDetailMovie(model: model, router: self)
+        let detailMovieVC = assemblyBuilder.createDetailMovie(id: id, router: self)
         navigationController.pushViewController(detailMovieVC, animated: true)
     }
     

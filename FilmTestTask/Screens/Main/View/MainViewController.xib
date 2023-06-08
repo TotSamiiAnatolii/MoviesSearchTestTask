@@ -7,6 +7,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto.ttf">
+            <string>RobotoRoman-SemiBold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="FilmTestTask" customModuleProvider="target">
             <connections>
@@ -23,29 +28,34 @@
                     <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                     <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <items>
-                        <navigationItem leftItemsSupplementBackButton="YES" style="editor" id="uwd-hr-fPv" customClass="TestItem" customModule="FilmTestTask" customModuleProvider="target">
-                            <barButtonItem key="leftBarButtonItem" title="ппроп" id="WCU-iI-Cdh">
+                        <navigationItem leftItemsSupplementBackButton="YES" largeTitleDisplayMode="never" id="uwd-hr-fPv">
+                            <nil key="title"/>
+                            <barButtonItem key="leftBarButtonItem" title="ппроп" springLoaded="YES" changesSelectionAsPrimaryAction="YES" id="WCU-iI-Cdh">
                                 <view key="customView" contentMode="scaleToFill" id="9xM-Vy-zzE">
                                     <rect key="frame" x="20" y="5.5" width="178" height="33"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Фильмы" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INd-t7-Vmh">
-                                            <rect key="frame" x="8" y="6" width="162" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Фильмы" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INd-t7-Vmh">
+                                            <rect key="frame" x="0.0" y="0.0" width="178" height="33"/>
+                                            <fontDescription key="fontDescription" name="RobotoRoman-SemiBold" family="Roboto" pointSize="25"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <rect key="contentStretch" x="0.050000000000000003" y="0.0" width="1" height="1"/>
+                                    <constraints>
+                                        <constraint firstItem="INd-t7-Vmh" firstAttribute="leading" secondItem="9xM-Vy-zzE" secondAttribute="leading" id="1tv-02-t5F"/>
+                                        <constraint firstItem="INd-t7-Vmh" firstAttribute="top" secondItem="9xM-Vy-zzE" secondAttribute="top" id="8ad-Qc-IuQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="INd-t7-Vmh" secondAttribute="trailing" id="Sfb-Km-LC0"/>
+                                        <constraint firstAttribute="bottom" secondItem="INd-t7-Vmh" secondAttribute="bottom" id="vA0-kP-QeI"/>
+                                    </constraints>
                                 </view>
                             </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" title="Item" image="search" landscapeImage="search" largeContentSizeImage="search" style="plain" id="poQ-cK-V8z"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                    <real key="value" value="2"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
+                            <barButtonItem key="rightBarButtonItem" image="search" landscapeImage="search" largeContentSizeImage="search" id="Nov-C6-UO2">
+                                <connections>
+                                    <action selector="adf:" destination="-1" id="mOy-WP-e8P"/>
+                                </connections>
+                            </barButtonItem>
                         </navigationItem>
                     </items>
                 </navigationBar>
@@ -64,16 +74,14 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="AUK-fT-nAx" secondAttribute="bottom" id="ABp-Xh-Ix6"/>
-                <constraint firstItem="AUK-fT-nAx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Ayn-LX-vZO"/>
-                <constraint firstItem="ChH-nC-HAM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="K90-m9-bGP"/>
+                <constraint firstItem="ChH-nC-HAM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Fbn-Kc-F3a"/>
                 <constraint firstItem="AUK-fT-nAx" firstAttribute="top" secondItem="ChH-nC-HAM" secondAttribute="bottom" id="NPg-4p-g5S"/>
-                <constraint firstItem="AUK-fT-nAx" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Nvd-yi-rTL"/>
-                <constraint firstAttribute="trailing" secondItem="ChH-nC-HAM" secondAttribute="trailing" id="RI0-d3-1as"/>
+                <constraint firstItem="ChH-nC-HAM" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="YNA-t5-4cp"/>
+                <constraint firstItem="ChH-nC-HAM" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="a66-Sb-WvG"/>
                 <constraint firstItem="AUK-fT-nAx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ahG-o2-eNZ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AUK-fT-nAx" secondAttribute="trailing" id="hTW-Nz-CoW"/>
-                <constraint firstItem="ChH-nC-HAM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="-44" id="qHi-1d-b7T"/>
+                <constraint firstItem="ChH-nC-HAM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="qHi-1d-b7T"/>
             </constraints>
-            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <point key="canvasLocation" x="124.6376811594203" y="-12.053571428571429"/>
         </view>
     </objects>

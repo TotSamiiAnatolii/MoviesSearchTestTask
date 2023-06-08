@@ -17,12 +17,23 @@ final class MainViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-
+    @IBAction func jjjjjj(_ sender: UIButton) {
+        print("search")
+    }
+    @IBAction func adf(_ sender: Any) {
+        print("search")
+    }
+    
+    @IBAction func sdsssd(_ sender: Any) {
+        print("search")
+    }
+    
         private let myCompositionalLayout = MyCompositionalLayout()
     
     init(presenter: MainMoviesListPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "MainViewController", bundle: nil)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -32,6 +43,7 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        setupNavBar()
+        self.navigationController?.navigationBar.isHidden = true
         prepareCollectionView()
     }
     

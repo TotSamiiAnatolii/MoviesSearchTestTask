@@ -17,6 +17,7 @@ protocol RouterProtocol: RouterMain {
     func initialViewController()
     func showMovie(model: DetailModel)
     func showSearchMovies()
+    func popToRoot()
     func alert(title: String, message: String, btnTitle: String, action: @escaping (() -> Void))
 }
 
@@ -48,6 +49,10 @@ final class Router: RouterProtocol {
     func showSearchMovies() {
         let searchMoviesVC = assemblyBuilder.createSearchMovies(router: self)
         navigationController.pushViewController(searchMoviesVC, animated: true)
+    }
+    
+    func popToRoot() {
+        navigationController.popToRootViewController(animated: true)
     }
     
     func alert(title: String, message: String, btnTitle: String, action: @escaping (() -> Void)) {

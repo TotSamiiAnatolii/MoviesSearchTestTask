@@ -33,8 +33,8 @@ final class ModuleBuilder: AssemblyBuilderProtocol {
     
     func createSearchMovies(router: RouterProtocol) -> UIViewController {
         let networkService = NetworkManager()
-        let presenter = MainMoviesListPresenter(networkService: networkService, router: router)
-        let view = MainViewController(presenter: presenter)
+        let presenter = SearchMoviesPresenter(networkService: networkService, router: router)
+        let view = SearchMoviesController(presenter: presenter)
         presenter.view = view
         return view
     }

@@ -9,6 +9,7 @@
     </dependencies>
     <customFonts key="customFonts">
         <array key="Roboto.ttf">
+            <string>Roboto-Regular</string>
             <string>RobotoRoman-SemiBold</string>
         </array>
     </customFonts>
@@ -35,7 +36,7 @@
                                     <rect key="frame" x="20" y="5.5" width="178" height="33"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Фильмы" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INd-t7-Vmh">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Фильмы" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INd-t7-Vmh">
                                             <rect key="frame" x="0.0" y="0.0" width="178" height="33"/>
                                             <fontDescription key="fontDescription" name="RobotoRoman-SemiBold" family="Roboto" pointSize="25"/>
                                             <nil key="textColor"/>
@@ -53,7 +54,7 @@
                             </barButtonItem>
                             <barButtonItem key="rightBarButtonItem" image="search" landscapeImage="search" largeContentSizeImage="search" id="Nov-C6-UO2">
                                 <connections>
-                                    <action selector="adf:" destination="-1" id="mOy-WP-e8P"/>
+                                    <action selector="searchButton:" destination="-1" id="y8d-oV-reX"/>
                                 </connections>
                             </barButtonItem>
                         </navigationItem>
@@ -69,23 +70,56 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vfB-1w-f0r">
+                    <rect key="frame" x="145" y="403.5" width="124" height="147"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error" translatesAutoresizingMaskIntoConstraints="NO" id="e9f-u3-qgB">
+                            <rect key="frame" x="15" y="0.0" width="94.5" height="82"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="82" id="5Sr-CD-MGX"/>
+                                <constraint firstAttribute="width" constant="94.5" id="x97-7O-ipJ"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6e-Sp-AGB">
+                            <rect key="frame" x="0.0" y="102" width="124" height="45"/>
+                            <color key="backgroundColor" red="0.27058823529411763" green="0.3411764705882353" blue="0.63529411764705879" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="124" id="Qpp-BV-42r"/>
+                                <constraint firstAttribute="height" constant="45" id="zQj-Qq-lCh"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Повторить">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="AUK-fT-nAx" secondAttribute="bottom" id="ABp-Xh-Ix6"/>
                 <constraint firstItem="ChH-nC-HAM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Fbn-Kc-F3a"/>
+                <constraint firstItem="vfB-1w-f0r" firstAttribute="centerY" secondItem="AUK-fT-nAx" secondAttribute="centerY" id="MKd-ap-kgy"/>
                 <constraint firstItem="AUK-fT-nAx" firstAttribute="top" secondItem="ChH-nC-HAM" secondAttribute="bottom" id="NPg-4p-g5S"/>
                 <constraint firstItem="ChH-nC-HAM" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="YNA-t5-4cp"/>
                 <constraint firstItem="ChH-nC-HAM" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="a66-Sb-WvG"/>
                 <constraint firstItem="AUK-fT-nAx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ahG-o2-eNZ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AUK-fT-nAx" secondAttribute="trailing" id="hTW-Nz-CoW"/>
+                <constraint firstItem="vfB-1w-f0r" firstAttribute="centerX" secondItem="AUK-fT-nAx" secondAttribute="centerX" id="oqo-69-bw3"/>
                 <constraint firstItem="ChH-nC-HAM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="qHi-1d-b7T"/>
             </constraints>
             <point key="canvasLocation" x="124.6376811594203" y="-12.053571428571429"/>
         </view>
     </objects>
     <resources>
+        <image name="error" width="96" height="83"/>
         <image name="search" width="20" height="20"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

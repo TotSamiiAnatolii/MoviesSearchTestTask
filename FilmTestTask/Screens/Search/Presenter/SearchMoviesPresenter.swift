@@ -14,6 +14,8 @@ protocol SearchMoviesPresenterProtocol {
     func showDetailMovie(model: DetailModel)
     
     func searchMovies(title movie: String)
+    
+    func popToRoot() 
 }
 
 final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
@@ -35,5 +37,9 @@ final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
     
     func searchMovies(title movie: String) {
 //        networkService.....
+    }
+    
+    func popToRoot() {
+        router.popToRoot()
     }
 }

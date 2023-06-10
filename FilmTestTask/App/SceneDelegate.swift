@@ -20,8 +20,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController()
         let assmblyBuilder = ModuleBuilder()
         let router = Router(navigationController: navigationController, assemblyBuilder: assmblyBuilder)
-//        router.initialViewController()
-        router.showMovie(id: "")
+        router.initialViewController()
+//        router.showMovie(id: "")
+//        router.showSearchMovies()
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }

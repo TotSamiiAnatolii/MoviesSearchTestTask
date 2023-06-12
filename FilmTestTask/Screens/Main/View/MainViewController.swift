@@ -9,6 +9,7 @@ import UIKit
 
 protocol MainMoviesListViewProtocol {
     
+    func success()
 }
 
 final class MainViewController: UIViewController {
@@ -51,21 +52,24 @@ final class MainViewController: UIViewController {
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        presenter.listTopMovies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.identifire, for: indexPath) as? MovieCell else {
             return UICollectionViewCell()
         }
-        cell.configure(with: MovieCellModel())
+        cell.configure(with: presenter.listTopMovies[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter.showMovie(model: DetailModel(image: UIImage(), nameFilm: "", description: "", movieGenre: "", country: "", year: ""))
+        presenter.showMovie(index: indexPath.row)
     }
 }
 extension MainViewController: MainMoviesListViewProtocol {
-    
+   
+    func success() {
+        collectionView.reloadData()
+    }
 }

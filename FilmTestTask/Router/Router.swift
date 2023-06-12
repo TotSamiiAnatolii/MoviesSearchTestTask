@@ -15,18 +15,14 @@ protocol RouterMain {
 
 protocol RouterProtocol: RouterMain {
     func initialViewController()
-    func showMovie(model: DetailModel)
+    func showMovie(id: Int)
     func showSearchMovies()
     func popToRoot()
     func alert(title: String, message: String, btnTitle: String, action: @escaping (() -> Void))
 }
 
 final class Router: RouterProtocol {
-    func showMovie(model: DetailModel) {
-        
-    }
-    
- 
+  
     var navigationController: UINavigationController
     
     var assemblyBuilder: AssemblyBuilderProtocol
@@ -41,7 +37,7 @@ final class Router: RouterProtocol {
         navigationController.viewControllers = [mainMoviesListVC]
     }
     
-    func showMovie(id: String) {
+    func showMovie(id: Int) {
         let detailMovieVC = assemblyBuilder.createDetailMovie(id: id, router: self)
         navigationController.pushViewController(detailMovieVC, animated: true)
     }

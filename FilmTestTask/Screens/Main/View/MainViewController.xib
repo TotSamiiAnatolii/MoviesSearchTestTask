@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -22,18 +22,18 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChH-nC-HAM">
-                    <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <items>
                         <navigationItem leftItemsSupplementBackButton="YES" largeTitleDisplayMode="never" id="uwd-hr-fPv">
                             <nil key="title"/>
                             <barButtonItem key="leftBarButtonItem" title="ппроп" springLoaded="YES" changesSelectionAsPrimaryAction="YES" id="WCU-iI-Cdh">
                                 <view key="customView" contentMode="scaleToFill" id="9xM-Vy-zzE">
-                                    <rect key="frame" x="20" y="5.5" width="178" height="33"/>
+                                    <rect key="frame" x="16" y="5.5" width="178" height="33"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Фильмы" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INd-t7-Vmh">
@@ -52,7 +52,8 @@
                                     </constraints>
                                 </view>
                             </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" image="search" landscapeImage="search" largeContentSizeImage="search" id="Nov-C6-UO2">
+                            <barButtonItem key="rightBarButtonItem" image="search" id="Nov-C6-UO2">
+                                <color key="tintColor" red="0.27058823529411763" green="0.3411764705882353" blue="0.63529411764705879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="searchButton:" destination="-1" id="y8d-oV-reX"/>
                                 </connections>
@@ -61,7 +62,7 @@
                     </items>
                 </navigationBar>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="AUK-fT-nAx">
-                    <rect key="frame" x="0.0" y="92" width="414" height="770"/>
+                    <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="n7N-gc-lGL">
                         <size key="itemSize" width="128" height="128"/>
@@ -71,7 +72,7 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vfB-1w-f0r">
-                    <rect key="frame" x="145" y="403.5" width="124" height="147"/>
+                    <rect key="frame" x="98" y="232.5" width="124" height="147"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error" translatesAutoresizingMaskIntoConstraints="NO" id="e9f-u3-qgB">
                             <rect key="frame" x="15" y="0.0" width="94.5" height="82"/>

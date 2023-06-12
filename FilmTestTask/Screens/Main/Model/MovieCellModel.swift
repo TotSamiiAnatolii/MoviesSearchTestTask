@@ -9,7 +9,8 @@ import UIKit
 
 struct MovieCellModel {
     
-    let poster: UIImage = UIImage(named: "Banner")!
-    let movieTitle: String = "Avatar"
-    let filmGenre: String = "fantasy(2023)"
+    let id: Int
+    let poster: UIImage
+    let movieTitle: String
+    let filmGenre: String
 }

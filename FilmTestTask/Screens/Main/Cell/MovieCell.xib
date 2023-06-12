@@ -30,18 +30,23 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="DnL-Tv-ze3"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="MmQ-pQ-N6C">
-                                <rect key="frame" x="70" y="26" width="231" height="68"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MmQ-pQ-N6C">
+                                <rect key="frame" x="70" y="25.999999999999996" width="231" height="43.666666666666657"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NmO-1v-eDm" userLabel="Movie title">
-                                        <rect key="frame" x="0.0" y="0.0" width="231" height="34"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie title" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NmO-1v-eDm" userLabel="Movie title">
+                                        <rect key="frame" x="0.0" y="0.0" width="75" height="19"/>
                                         <fontDescription key="fontDescription" name="RobotoRoman-Medium" family="Roboto" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="film genre(2000)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCk-o2-FI1" userLabel="Film genre">
-                                        <rect key="frame" x="0.0" y="34" width="231" height="34"/>
+                                        <rect key="frame" x="0.0" y="27" width="104.66666666666667" height="16.666666666666671"/>
                                         <fontDescription key="fontDescription" name="RobotoRoman-Medium" family="Roboto" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59650173566199294" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -57,7 +62,6 @@
                             <constraint firstItem="cz2-Xj-5Lk" firstAttribute="leading" secondItem="RKM-pc-fhS" secondAttribute="leading" constant="15" id="M0a-Cs-4um"/>
                             <constraint firstAttribute="trailing" secondItem="MmQ-pQ-N6C" secondAttribute="trailing" constant="15" id="NRw-kW-djX"/>
                             <constraint firstItem="cz2-Xj-5Lk" firstAttribute="top" secondItem="RKM-pc-fhS" secondAttribute="top" constant="15" id="aJg-bF-muN"/>
-                            <constraint firstAttribute="bottom" secondItem="MmQ-pQ-N6C" secondAttribute="bottom" constant="27" id="aeK-CQ-wNS"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">

@@ -9,11 +9,26 @@ import UIKit
 
 protocol DetailMovieViewProtocol: AnyObject {
     
+    func success(model: DetailModel)
+    
+    func failure()
 }
 
 final class DetailViewController: UIViewController {
     
     var presenter: DetailMoviePresenterProtocol
+    
+    @IBOutlet weak var poster: UIImageView!
+    
+    @IBOutlet weak var movieTitle: UILabel!
+    
+    @IBOutlet weak var filmDescription: UILabel!
+    
+    @IBOutlet weak var genre: UILabel!
+    
+    @IBOutlet weak var country: UILabel!
+    
+    @IBOutlet weak var year: UILabel!
     
     init(presenter: DetailMoviePresenterProtocol) {
         self.presenter = presenter
@@ -30,7 +45,23 @@ final class DetailViewController: UIViewController {
     }
 
 
+    @IBAction func backButton(_ sender: UIButton) {
+        presenter.popToRoot()
+    }
 }
 extension DetailViewController: DetailMovieViewProtocol {
+ 
+    func success(model: DetailModel) {
+   
+        poster.image = model.image
+        movieTitle.text = model.movieTitle
+        filmDescription.text = model.description
+        genre.text = model.movieGenre
+        country.text = model.country
+        year.text = model.year
+    }
     
+    func failure() {
+        
+    }
 }

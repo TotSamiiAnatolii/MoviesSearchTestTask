@@ -10,7 +10,7 @@ import UIKit
 struct DetailModel {
     
     let image: UIImage
-    let nameFilm: String
+    let movieTitle: String
     let description: String
     let movieGenre: String
     let country: String

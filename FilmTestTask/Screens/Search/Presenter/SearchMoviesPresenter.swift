@@ -11,7 +11,7 @@ protocol SearchMoviesPresenterProtocol {
     
     init(networkService: NetworkServiceProtocol, router: RouterProtocol)
     
-    func showDetailMovie(model: DetailModel)
+    func showDetailMovie(id: Int)
     
     func searchMovies(title movie: String)
     
@@ -31,8 +31,8 @@ final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
         self.router = router
     }
     
-    func showDetailMovie(model: DetailModel) {
-        router.showMovie(model: model)
+    func showDetailMovie(id: Int) {
+        router.showMovie(id: id)
     }
     
     func searchMovies(title movie: String) {

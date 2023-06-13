@@ -54,7 +54,6 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     }
     
     func showMovie(index: Int) {
-        print(listTopMovies[index].id)
         router.showMovie(id: listTopMovies[index].id)
     }
     

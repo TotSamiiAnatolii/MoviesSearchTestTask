@@ -18,8 +18,6 @@ final class MainViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-  
-    
     private let myCompositionalLayout = MyCompositionalLayout()
     
     init(presenter: MainMoviesListPresenterProtocol) {
@@ -68,7 +66,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 }
 extension MainViewController: MainMoviesListViewProtocol {
-   
+    
     func success() {
         collectionView.reloadData()
     }

@@ -13,13 +13,15 @@ protocol NetworkServiceProtocol: AnyObject {
     
     func getDetailMovie(id: Int, completion: @escaping((Result<DetailsMovie, Error>) -> Void))
     
+    func searchMovie(title: String, completion: @escaping((Result<SearchMovie, Error>) -> Void))
+    
     func getReleases(year: Int, month: String, page: Int, completion: @escaping((Result<ReleaseMovie, Error>) -> Void))
     
     func getPhoto(url: String, completion: @escaping((Result<Data, Error>) -> Void))
 }
 
 final class NetworkManager: NetworkServiceProtocol {
-  
+ 
     func getPhoto(url: String, completion: @escaping ((Result<Data, Error>) -> Void)) {
         guard let url = URL(string: url) else {
             return
@@ -74,6 +76,25 @@ final class NetworkManager: NetworkServiceProtocol {
         fetchModels(from: request, in: completion)
     }
     
+    func searchMovie(title: String, completion: @escaping ((Result<SearchMovie, Error>) -> Void)) {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "kinopoiskapiunofficial.tech"
+        components.path = "/api/v2.1/films/search-by-keyword"
+        
+        components.queryItems = [
+            URLQueryItem(name: "keyword", value: title)
+        ]
+        
+        guard let url = components.url else {
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.allHTTPHeaderFields = ["X-API-KEY": ApiUrl.token.rawValue]
+        fetchModels(from: request, in: completion)
+    }
+    
     func getReleases(year: Int, month: String, page: Int, completion: @escaping((Result<ReleaseMovie, Error>) -> Void))  {
         
         var components = URLComponents()
@@ -111,7 +132,6 @@ final class NetworkManager: NetworkServiceProtocol {
             }
             
             do {
-                print(data as NSData)
                 let decoder = JSONDecoder()
                 let model = try decoder.decode(T.self, from: data)
                 DispatchQueue.main.async {

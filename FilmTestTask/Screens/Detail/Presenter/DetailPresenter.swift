@@ -7,14 +7,6 @@
 
 import UIKit
 
-enum ParametrsMovie: String {
-    case movieTitle
-    case description
-    case movieGenre = "Жанры"
-    case country = "Страны"
-    case year = "Год"
-}
-
 protocol DetailMoviePresenterProtocol {
     
     init(id: Int, networkService: NetworkServiceProtocol, router: RouterProtocol)

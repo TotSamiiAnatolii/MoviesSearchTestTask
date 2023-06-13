@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		187B3EB72A38EB0E00947C6B /* SearchMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187B3EB62A38EB0E00947C6B /* SearchMovie.swift */; };
 		188A51F92A2E13DB00A89679 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188A51F82A2E13DB00A89679 /* AppDelegate.swift */; };
 		188A51FB2A2E13DB00A89679 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188A51FA2A2E13DB00A89679 /* SceneDelegate.swift */; };
 		188A52022A2E13F000A89679 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188A52012A2E13F000A89679 /* Assets.xcassets */; };
@@ -60,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		187B3EB62A38EB0E00947C6B /* SearchMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovie.swift; sourceTree = "<group>"; };
 		188A51F52A2E13DB00A89679 /* FilmTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilmTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188A51F82A2E13DB00A89679 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		188A51FA2A2E13DB00A89679 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				188D174F2A36051100E0BFB2 /* ModelListFilms.swift */,
 				188D17522A36386500E0BFB2 /* ModelTopListMovies.swift */,
 				18917DC72A3725610079DA66 /* ModelDetailsMovie.swift */,
+				187B3EB62A38EB0E00947C6B /* SearchMovie.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				187B3EB72A38EB0E00947C6B /* SearchMovie.swift in Sources */,
 				18A3028E2A2E25400076D94B /* MovieCell.swift in Sources */,
 				188A52332A2E157500A89679 /* MainViewController.swift in Sources */,
 				188D17502A36051100E0BFB2 /* ModelListFilms.swift in Sources */,

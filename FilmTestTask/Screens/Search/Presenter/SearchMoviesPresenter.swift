@@ -36,7 +36,14 @@ final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
     }
     
     func searchMovies(title movie: String) {
-//        networkService.....
+        networkService.searchMovie(title: movie) { result in
+            switch result {
+            case .success(let success):
+              print(success)
+            case .failure(let failure):
+                print(failure)
+            }
+        }
     }
     
     func popToRoot() {

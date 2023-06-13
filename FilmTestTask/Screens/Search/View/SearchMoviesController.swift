@@ -15,6 +15,15 @@ final class SearchMoviesController: UIViewController {
     
     var presenter: SearchMoviesPresenterProtocol
     
+    private let myCompositionalLayout = MyCompositionalLayout()
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    
+    @IBAction func search(_ sender: UITextField) {
+        presenter.searchMovies(title: sender.text!)
+    }
+    
     init(presenter: SearchMoviesPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "SearchMoviesController", bundle: nil)
@@ -28,8 +37,15 @@ final class SearchMoviesController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
+        prepareCollectionView()
     }
 
+    private func prepareCollectionView() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.collectionViewLayout = myCompositionalLayout.setLayoutCollection()
+        collectionView.register(UINib(nibName: MovieCell.identifire, bundle: nil), forCellWithReuseIdentifier: MovieCell.identifire)
+    }
     
     @IBAction func backButton(_ sender: Any) {
         presenter.popToRoot()
@@ -37,4 +53,16 @@ final class SearchMoviesController: UIViewController {
 }
 extension SearchMoviesController: SearchMoviesViewProtocol {
     
+}
+extension SearchMoviesController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.identifire, for: indexPath) as? MovieCell else {
+            return UICollectionViewCell()
+        }
+        return cell
+    }
 }

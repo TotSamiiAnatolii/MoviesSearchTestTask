@@ -66,7 +66,7 @@ final class NetworkManager: NetworkServiceProtocol {
         components.scheme = "https"
         components.host = "kinopoiskapiunofficial.tech"
         components.path = "/api/v2.2/films/\(id)"
-
+      
         guard let url = components.url else {
             return
         }
@@ -132,6 +132,7 @@ final class NetworkManager: NetworkServiceProtocol {
             }
             
             do {
+                print(data)
                 let decoder = JSONDecoder()
                 let model = try decoder.decode(T.self, from: data)
                 DispatchQueue.main.async {

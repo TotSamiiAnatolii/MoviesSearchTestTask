@@ -63,7 +63,6 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     
     func map(model: [Film]) -> [MovieCellModel] {
         return model.map { currency in
-            
             var image = UIImage()
             
             networkService.getPhoto(url: currency.posterUrl) { result in

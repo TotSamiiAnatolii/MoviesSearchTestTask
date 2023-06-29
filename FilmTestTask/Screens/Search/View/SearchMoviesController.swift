@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SearchMoviesViewProtocol {
-    
+    func success()
 }
 
 final class SearchMoviesController: UIViewController {
@@ -52,17 +52,20 @@ final class SearchMoviesController: UIViewController {
     }
 }
 extension SearchMoviesController: SearchMoviesViewProtocol {
-    
+    func success() {
+        collectionView.reloadData()
+    }
 }
 extension SearchMoviesController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        presenter.listTopMovies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.identifire, for: indexPath) as? MovieCell else {
             return UICollectionViewCell()
         }
+        cell.configure(with: presenter.listTopMovies[indexPath.row])
         return cell
     }
 }

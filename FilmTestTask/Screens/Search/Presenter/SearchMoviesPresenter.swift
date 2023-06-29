@@ -15,7 +15,11 @@ protocol SearchMoviesPresenterProtocol {
     
     func searchMovies(title movie: String)
     
-    func popToRoot() 
+    func popToRoot()
+    
+    func map(model: [Film]) -> [MovieCellModel]
+    
+    var listTopMovies: [MovieCellModel] {get set}
 }
 
 final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
@@ -25,6 +29,8 @@ final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
     let networkService: NetworkServiceProtocol
     
     var router: RouterProtocol
+    
+    var listTopMovies: [MovieCellModel] = []
     
     init(networkService: NetworkServiceProtocol, router: RouterProtocol) {
         self.networkService = networkService
@@ -39,7 +45,10 @@ final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
         networkService.searchMovie(title: movie) { result in
             switch result {
             case .success(let success):
-              print(success)
+                self.listTopMovies = self.map(model: success.films)
+                DispatchQueue.main.async {
+                    self.view?.success()
+                }
             case .failure(let failure):
                 print(failure)
             }
@@ -48,5 +57,27 @@ final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
     
     func popToRoot() {
         router.popToRoot()
+    }
+    
+    func map(model: [Film]) -> [MovieCellModel] {
+        return model.map { currency in
+            var image = UIImage()
+            
+            networkService.getPhoto(url: currency.posterUrl) { result in
+                switch result {
+                case .success(let success):
+                    guard let poster = UIImage(data: success) else { return }
+                    image = poster
+                    
+                case .failure(_):
+                    image = UIImage()
+                }
+            }
+            return MovieCellModel(
+                id: currency.filmId,
+                poster: image,
+                movieTitle: currency.nameRu,
+                filmGenre: currency.genres.first?.genre ?? "Error")
+        }
     }
 }

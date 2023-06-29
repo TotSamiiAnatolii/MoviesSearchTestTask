@@ -9,6 +9,7 @@ import Foundation
 
 struct SearchMovie: Codable {
     let keyword: String
-    let pagesCount, searchFilmsCountResult: Int
+    let pagesCount: Int
+    let searchFilmsCountResult: Int
     let films: [Film]
 }

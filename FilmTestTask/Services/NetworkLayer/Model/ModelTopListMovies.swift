@@ -17,7 +17,7 @@ struct Film: Codable {
     var nameRu: String
     var nameEn: String?
     var year: String
-    var filmLength: String
+    var filmLength: String?
     var countries: [Countries]
     var genres: [Genres]
     var rating: String

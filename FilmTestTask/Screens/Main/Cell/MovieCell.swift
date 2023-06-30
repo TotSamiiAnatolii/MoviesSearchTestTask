@@ -52,6 +52,4 @@ extension MovieCell: ConfigureView {
     }
     
     typealias Model = MovieCellModel
-    
-    
 }

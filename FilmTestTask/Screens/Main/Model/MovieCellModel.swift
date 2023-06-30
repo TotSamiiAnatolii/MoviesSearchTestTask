@@ -13,4 +13,6 @@ struct MovieCellModel {
     let poster: UIImage
     let movieTitle: String
     let filmGenre: String
+    
+  
 }

@@ -43,55 +43,34 @@ final class NetworkManager: NetworkServiceProtocol {
     
     
     func getTopListMovies(page: Int, completion: @escaping((Result<ModelTopListMovies, Error>) -> Void)) {
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = "kinopoiskapiunofficial.tech"
-        components.path = "/api/v2.1/films/top"
-        
-        components.queryItems = [
-            URLQueryItem(name: "page", value: "\(page)")
-        ]
-        
-        guard let url = components.url else {
+
+        guard let url = ApiBuilder.topList(page: page) else {
             return
         }
         
         var request = URLRequest(url: url)
-        request.allHTTPHeaderFields = ["X-API-KEY": ApiUrl.token.rawValue]
+        request.allHTTPHeaderFields = ["X-API-KEY": ApiBuilder.token.rawValue]
         fetchModels(from: request, in: completion)
     }
     
     func getDetailMovie(id: Int, completion: @escaping ((Result<DetailsMovie, Error>) -> Void)) {
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = "kinopoiskapiunofficial.tech"
-        components.path = "/api/v2.2/films/\(id)"
-      
-        guard let url = components.url else {
+
+        guard let url = ApiBuilder.detailMovie(id: id) else {
             return
         }
         
         var request = URLRequest(url: url)
-        request.allHTTPHeaderFields = ["X-API-KEY": ApiUrl.token.rawValue]
+        request.allHTTPHeaderFields = ["X-API-KEY": ApiBuilder.token.rawValue]
         fetchModels(from: request, in: completion)
     }
     
     func searchMovie(title: String, completion: @escaping ((Result<SearchMovie, Error>) -> Void)) {
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = "kinopoiskapiunofficial.tech"
-        components.path = "/api/v2.1/films/search-by-keyword"
-        
-        components.queryItems = [
-            URLQueryItem(name: "keyword", value: title)
-        ]
-        
-        guard let url = components.url else {
+        guard let url = ApiBuilder.searchMovie(title: title) else {
             return
         }
         
         var request = URLRequest(url: url)
-        request.allHTTPHeaderFields = ["X-API-KEY": ApiUrl.token.rawValue]
+        request.allHTTPHeaderFields = ["X-API-KEY": ApiBuilder.token.rawValue]
         fetchModels(from: request, in: completion)
     }
     
@@ -113,7 +92,7 @@ final class NetworkManager: NetworkServiceProtocol {
         }
         
         var request = URLRequest(url: url)
-        request.allHTTPHeaderFields = ["X-API-KEY": ApiUrl.token.rawValue]
+        request.allHTTPHeaderFields = ["X-API-KEY": ApiBuilder.token.rawValue]
         fetchModels(from: request, in: completion)
     }
     
@@ -132,7 +111,6 @@ final class NetworkManager: NetworkServiceProtocol {
             }
             
             do {
-                print(data)
                 let decoder = JSONDecoder()
                 let model = try decoder.decode(T.self, from: data)
                 DispatchQueue.main.async {

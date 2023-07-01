@@ -39,11 +39,11 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PzX-H6-xT7" userLabel="Poster">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="548.66666666666663"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Banner (1)" translatesAutoresizingMaskIntoConstraints="NO" id="VdD-TN-Plj" userLabel="Image">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VdD-TN-Plj" userLabel="Image">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="548.66666666666663"/>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oC8-Sv-WDX">
-                                            <rect key="frame" x="26" y="151.66666666666666" width="16" height="16"/>
+                                            <rect key="frame" x="26" y="83" width="16" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="16" id="cYc-fG-6cg"/>
                                                 <constraint firstAttribute="height" constant="16" id="ylQ-C1-E1S"/>
@@ -179,7 +179,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Banner (1)" width="359" height="533"/>
         <image name="back" width="16" height="16"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -9,7 +9,7 @@ import UIKit
 
 struct DetailModel {
     
-    let image: UIImage
+    let poster: String
     let movieTitle: String
     let description: String
     let movieGenre: String

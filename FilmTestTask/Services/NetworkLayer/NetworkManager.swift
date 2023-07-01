@@ -26,19 +26,18 @@ final class NetworkManager: NetworkServiceProtocol {
         guard let url = URL(string: url) else {
             return
         }
-        
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            
-            if let error = error {
-                completion(.failure(error))
-                print(error.localizedDescription)
+        DispatchQueue.global().async {
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                
+                if let error = error {
+                    completion(.failure(error))
+                    print(error.localizedDescription)
+                }
+                guard let data = data else { return }
+                completion(.success(data))
             }
-            
-            guard let data = data else { return }
-            
-            completion(.success(data))
+            task.resume()
         }
-        task.resume()
     }
     
     

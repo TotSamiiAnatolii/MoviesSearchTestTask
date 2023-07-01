@@ -10,7 +10,7 @@ import UIKit
 struct MovieCellModel {
     
     let id: Int
-    let poster: UIImage
+    let poster: String
     let movieTitle: String
     let filmGenre: String
     

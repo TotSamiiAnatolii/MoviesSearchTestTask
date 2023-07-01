@@ -35,7 +35,7 @@ final class DetailMoviePresenter: DetailMoviePresenterProtocol {
         networkService.getDetailMovie(id: id) { result in
             switch result {
             case .success(let success):
-
+                
                 DispatchQueue.main.async {
                     self.view?.success(model: self.parser(model: success))
                 }
@@ -61,7 +61,7 @@ final class DetailMoviePresenter: DetailMoviePresenterProtocol {
             return coutry.country
         }
         
-        return DetailModel(image: UIImage(),
+        return DetailModel(poster: model.posterURL,
                            movieTitle: model.nameRu,
                            description: model.description,
                            movieGenre: genre.joined(separator: ", "),

@@ -28,6 +28,13 @@ final class MovieCell: UICollectionViewCell {
     
     @IBOutlet weak var filmGenre: UILabel!
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        poster.image = nil
+        movieTitle.text = nil
+        filmGenre.text = nil
+    }
+    
     private func setupShadowCell() {
         let radius: CGFloat = 20
         layer.shadowColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
@@ -46,10 +53,11 @@ final class MovieCell: UICollectionViewCell {
 }
 extension MovieCell: ConfigureView {
     func configure(with model: MovieCellModel) {
-        self.poster.image = model.poster
         self.movieTitle.text = model.movieTitle
         self.filmGenre.text = model.filmGenre
+        self.poster.loadImage(url: model.poster)
     }
     
     typealias Model = MovieCellModel
 }
+

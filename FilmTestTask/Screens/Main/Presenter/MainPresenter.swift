@@ -62,23 +62,7 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     }
     func map(model: [Film]) -> [MovieCellModel] {
         return model.map { currency in
-//            var image = UIImage()
-//            let vodel =  MovieCellModel(
-//                id: currency.filmId,
-//                poster: currency.posterUrl,
-//                movieTitle: currency.nameRu,
-//                filmGenre: currency.genres.first?.genre ?? "Error")
-            
-//            networkService.getPhoto(url: currency.posterUrl) { result in
-//                switch result {
-//                case .success(let success):
-//                    guard let poster = UIImage(data: success) else { return }
-//                    image = poster
-//
-//                case .failure(_):
-//                    image = UIImage()
-//                }
-//            }
+
             return MovieCellModel(
                 id: currency.filmId,
                 poster: currency.posterUrl,

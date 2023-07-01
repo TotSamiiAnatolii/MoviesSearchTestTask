@@ -11,14 +11,14 @@ protocol SearchMoviesPresenterProtocol {
     
     init(networkService: NetworkServiceProtocol, router: RouterProtocol)
     
-    func showDetailMovie(id: Int)
+    func showDetailMovie(index: Int)
     
     func searchMovies(title movie: String)
     
     func popToRoot()
     
     func map(model: [Film]) -> [MovieCellModel]
-    
+        
     var listTopMovies: [MovieCellModel] {get set}
 }
 
@@ -37,8 +37,8 @@ final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
         self.router = router
     }
     
-    func showDetailMovie(id: Int) {
-        router.showMovie(id: id)
+    func showDetailMovie(index: Int) {
+        router.showMovie(id: listTopMovies[index].id)
     }
     
     func searchMovies(title movie: String) {

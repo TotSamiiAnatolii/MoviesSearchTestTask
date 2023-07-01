@@ -48,15 +48,10 @@ final class Router: RouterProtocol {
     }
     
     func popToRoot() {
-        navigationController.popToRootViewController(animated: true)
+        navigationController.popViewController(animated: true)
     }
     
     func alert(title: String, message: String, btnTitle: String, action: @escaping (() -> Void)) {
-//        let alertController = assemblyBuilder.createAlert(
-//            title: title,
-//            message: message,
-//            btnTitle: btnTitle,
-//            action: action)
-//        navigationController.present(alertController, animated: true)
+        
     }
 }

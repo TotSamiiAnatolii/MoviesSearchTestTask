@@ -68,4 +68,8 @@ extension SearchMoviesController: UICollectionViewDelegate, UICollectionViewData
         cell.configure(with: presenter.listTopMovies[indexPath.row])
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter.showDetailMovie(index: indexPath.row)
+    }
 }

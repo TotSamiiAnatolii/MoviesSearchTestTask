@@ -53,7 +53,7 @@ extension DetailViewController: DetailMovieViewProtocol {
  
     func success(model: DetailModel) {
    
-        poster.loadImage(url: model.poster)
+        poster.loadImage(urlString: model.poster)
         movieTitle.text = model.movieTitle
         filmDescription.text = model.description
         genre.text = model.movieGenre

@@ -38,4 +38,14 @@ final class ModuleBuilder: AssemblyBuilderProtocol {
         presenter.view = view
         return view
     }
+    
+    func createAlert(title: String, message: String, btnTitle: String, action: @escaping (() -> Void)) -> UIAlertController {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: btnTitle, style: .default) { _ in
+            action()
+        }
+        alertController.addAction(action)
+        return alertController
+    }
 }

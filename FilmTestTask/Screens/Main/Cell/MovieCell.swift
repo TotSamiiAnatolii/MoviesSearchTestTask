@@ -55,7 +55,7 @@ extension MovieCell: ConfigureView {
     func configure(with model: MovieCellModel) {
         self.movieTitle.text = model.movieTitle
         self.filmGenre.text = model.filmGenre
-        self.poster.loadImage(url: model.poster)
+        self.poster.loadImage(urlString: model.poster)
     }
     
     typealias Model = MovieCellModel

@@ -52,6 +52,12 @@ final class Router: RouterProtocol {
     }
     
     func alert(title: String, message: String, btnTitle: String, action: @escaping (() -> Void)) {
-        
+        let alertController = assemblyBuilder.createAlert(
+            title: title,
+            message: message,
+            btnTitle: btnTitle) {
+                action()
+            }
+        navigationController.present(alertController, animated: true)
     }
 }

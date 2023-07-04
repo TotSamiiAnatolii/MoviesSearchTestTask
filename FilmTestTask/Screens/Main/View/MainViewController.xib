@@ -17,6 +17,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="FilmTestTask" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="AUK-fT-nAx" id="hu6-F6-YwU"/>
+                <outlet property="noInternetStackView" destination="vfB-1w-f0r" id="ght-kr-lLZ"/>
+                <outlet property="repeatButton" destination="M6e-Sp-AGB" id="8Ap-r2-n08"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -71,7 +73,7 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vfB-1w-f0r">
+                <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vfB-1w-f0r" userLabel="ErrorView">
                     <rect key="frame" x="98" y="232.5" width="124" height="147"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error" translatesAutoresizingMaskIntoConstraints="NO" id="e9f-u3-qgB">
@@ -98,6 +100,9 @@
                                     <integer key="value" value="20"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="repeatButton:" destination="-1" eventType="touchUpInside" id="40x-NC-Iqq"/>
+                            </connections>
                         </button>
                     </subviews>
                 </stackView>

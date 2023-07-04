@@ -10,6 +10,10 @@ import UIKit
 protocol MainMoviesListViewProtocol {
     
     func success()
+    
+    func failure()
+    
+    func noInternetAlertManagement(isHidden: Bool)
 }
 
 final class MainViewController: UIViewController {
@@ -17,6 +21,10 @@ final class MainViewController: UIViewController {
     var presenter: MainMoviesListPresenterProtocol
     
     @IBOutlet weak var collectionView: UICollectionView!
+
+    @IBOutlet weak var repeatButton: UIButton!
+    
+    @IBOutlet weak var noInternetStackView: UIStackView!
     
     private let myCompositionalLayout = MyCompositionalLayout()
     
@@ -46,6 +54,10 @@ final class MainViewController: UIViewController {
     @IBAction func searchButton(_ sender: Any) {
         presenter.showSearchMovies()
     }
+    
+    @IBAction func repeatButton(_ sender: Any) {
+        presenter.getListMovie(page: 1)
+    }
 }
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -66,8 +78,18 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 }
 extension MainViewController: MainMoviesListViewProtocol {
+    func noInternetAlertManagement(isHidden: Bool) {
+        noInternetStackView.isHidden = isHidden
+    }
     
+
     func success() {
+        noInternetAlertManagement(isHidden: true)
         collectionView.reloadData()
+        
+    }
+    
+    func failure() {
+        noInternetAlertManagement(isHidden: false)
     }
 }

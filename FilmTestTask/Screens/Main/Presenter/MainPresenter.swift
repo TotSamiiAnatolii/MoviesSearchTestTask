@@ -11,7 +11,7 @@ protocol MainMoviesListPresenterProtocol: AnyObject {
     
     init(networkService: NetworkServiceProtocol, router: RouterProtocol)
     
-    func getListMovie()
+    func getListMovie(page: Int)
     
     func showMovie(index: Int)
     
@@ -37,10 +37,11 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     init(networkService: NetworkServiceProtocol, router: RouterProtocol) {
         self.router = router
         self.networkService = networkService
-        getListMovie()
+        getListMovie(page: 1)
     }
     
-    func getListMovie() {
+    func getListMovie(page: Int) {
+        view?.noInternetAlertManagement(isHidden: true)
         networkService.getTopListMovies(page: 1) { result in
             switch result {
             case .success(let success):
@@ -49,7 +50,9 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
                     self.view?.success()
                 }
             case .failure(let failure):
-                self.failure(error: failure)
+                DispatchQueue.main.async {
+                    self.view?.failure()
+                }
             }
         }
     }
@@ -76,7 +79,7 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
         router.alert(title: "Error",
                      message: error.localizedDescription,
                      btnTitle: "Повторить") {
-            self.getListMovie()
+            self.getListMovie(page: 1)
         }
     }
 }

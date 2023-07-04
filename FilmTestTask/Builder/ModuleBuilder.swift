@@ -11,6 +11,7 @@ protocol AssemblyBuilderProtocol {
     func createMainMoviesList(router: RouterProtocol) -> UIViewController
     func createSearchMovies(router: RouterProtocol) -> UIViewController
     func createDetailMovie(id: Int, router: RouterProtocol) -> UIViewController
+    func createAlert(title: String, message: String, btnTitle: String, action: @escaping (() -> Void)) -> UIAlertController
 }
 
 final class ModuleBuilder: AssemblyBuilderProtocol {

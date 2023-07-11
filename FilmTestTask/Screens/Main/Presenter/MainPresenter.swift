@@ -21,6 +21,8 @@ protocol MainMoviesListPresenterProtocol: AnyObject {
     
     func failure(error: Error)
     
+    func supplement()
+    
     var listTopMovies: [MovieCellModel] {get set}
 }
 
@@ -32,6 +34,8 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     
     var listTopMovies: [MovieCellModel] = []
     
+    var page: Int = 1
+    
     var router: RouterProtocol
     
     init(networkService: NetworkServiceProtocol, router: RouterProtocol) {
@@ -42,7 +46,7 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     
     func getListMovie(page: Int) {
         view?.noInternetAlertManagement(isHidden: true)
-        networkService.getTopListMovies(page: 1) { result in
+        networkService.getTopListMovies(page: page) { result in
             switch result {
             case .success(let success):
                 self.listTopMovies = self.map(model: success.films)
@@ -79,7 +83,22 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
         router.alert(title: "Error",
                      message: error.localizedDescription,
                      btnTitle: "Повторить") {
-            self.getListMovie(page: 1)
+            self.getListMovie(page: self.page)
+        }
+    }
+    
+    func supplement() {
+        page += 1
+        networkService.getTopListMovies(page: page) { result in
+            switch result {
+            case .success(let success):
+                self.listTopMovies.append(contentsOf: self.map(model: success.films))
+                DispatchQueue.main.async {
+                    self.view?.success()
+                }
+            case .failure(let failure):
+                print(failure)
+            }
         }
     }
 }

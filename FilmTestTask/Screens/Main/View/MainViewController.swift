@@ -48,6 +48,7 @@ final class MainViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.collectionViewLayout = myCompositionalLayout.setLayoutCollection()
         collectionView.register(UINib(nibName: MovieCell.identifire, bundle: nil), forCellWithReuseIdentifier: MovieCell.identifire)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 300, right: 0)
     }
     
     
@@ -75,6 +76,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter.showMovie(index: indexPath.row)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == presenter.listTopMovies.count - 1 {
+            presenter.supplement()
+         }
     }
 }
 extension MainViewController: MainMoviesListViewProtocol {

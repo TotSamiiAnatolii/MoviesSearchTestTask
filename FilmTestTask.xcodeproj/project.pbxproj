@@ -135,6 +135,13 @@
 			path = Cashe;
 			sourceTree = "<group>";
 		};
+		1882F96A2A5F288A00085C0E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		188A51EC2A2E13DA00A89679 = {
 			isa = PBXGroup;
 			children = (
@@ -316,6 +323,7 @@
 		18A302832A2E20FB0076D94B /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				1882F96A2A5F288A00085C0E /* Fonts */,
 				18A54A9F2A3262C300BE204E /* Roboto.ttf */,
 				18A302882A2E21B50076D94B /* CollectionLayout */,
 				18A302862A2E21340076D94B /* Protocol */,

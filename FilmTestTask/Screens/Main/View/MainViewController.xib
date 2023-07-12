@@ -35,7 +35,7 @@
                             <nil key="title"/>
                             <barButtonItem key="leftBarButtonItem" title="ппроп" springLoaded="YES" changesSelectionAsPrimaryAction="YES" id="WCU-iI-Cdh">
                                 <view key="customView" contentMode="scaleToFill" id="9xM-Vy-zzE">
-                                    <rect key="frame" x="16" y="8.5" width="178" height="33"/>
+                                    <rect key="frame" x="16" y="5.5" width="178" height="33"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Фильмы" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INd-t7-Vmh">
@@ -106,6 +106,9 @@
                         </button>
                     </subviews>
                 </stackView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="RkZ-Za-F6g">
+                    <rect key="frame" x="150" y="451" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -120,8 +123,10 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AUK-fT-nAx" secondAttribute="trailing" id="hTW-Nz-CoW"/>
                 <constraint firstItem="vfB-1w-f0r" firstAttribute="centerX" secondItem="AUK-fT-nAx" secondAttribute="centerX" id="oqo-69-bw3"/>
                 <constraint firstItem="ChH-nC-HAM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="qHi-1d-b7T"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="RkZ-Za-F6g" secondAttribute="bottom" constant="200" id="u4o-Yb-EwV"/>
+                <constraint firstItem="RkZ-Za-F6g" firstAttribute="centerY" secondItem="AUK-fT-nAx" secondAttribute="centerY" id="zxY-xa-WDV"/>
             </constraints>
-            <point key="canvasLocation" x="124.6376811594203" y="-12.053571428571429"/>
+            <point key="canvasLocation" x="123.75" y="-12.67605633802817"/>
         </view>
     </objects>
     <resources>

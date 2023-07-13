@@ -11,6 +11,8 @@ protocol MainMoviesListPresenterProtocol: AnyObject {
     
     init(networkService: NetworkServiceProtocol, router: RouterProtocol)
     
+    var listTopMovies: [MovieCellModel] {get set}
+    
     func getListMovie(page: Int)
     
     func showMovie(index: Int)
@@ -22,8 +24,6 @@ protocol MainMoviesListPresenterProtocol: AnyObject {
     func failure(error: Error)
     
     func supplement()
-    
-    var listTopMovies: [MovieCellModel] {get set}
 }
 
 final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
@@ -89,6 +89,7 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     
     func supplement() {
         page += 1
+        view?.controlActivityIndicator(state: true)
         networkService.getTopListMovies(page: page) { result in
             switch result {
             case .success(let success):
@@ -96,6 +97,7 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
                 DispatchQueue.main.async {
                     self.view?.success()
                 }
+                self.view?.controlActivityIndicator(state: false)
             case .failure(let failure):
                 print(failure)
             }

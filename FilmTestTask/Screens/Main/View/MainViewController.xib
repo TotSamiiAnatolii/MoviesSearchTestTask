@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -16,6 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="FilmTestTask" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="1aX-0K-ckC" id="1Dr-SP-MtM"/>
                 <outlet property="collectionView" destination="AUK-fT-nAx" id="hu6-F6-YwU"/>
                 <outlet property="noInternetStackView" destination="vfB-1w-f0r" id="ght-kr-lLZ"/>
                 <outlet property="repeatButton" destination="M6e-Sp-AGB" id="8Ap-r2-n08"/>
@@ -24,18 +25,18 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChH-nC-HAM">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                     <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <items>
                         <navigationItem leftItemsSupplementBackButton="YES" largeTitleDisplayMode="never" id="uwd-hr-fPv">
                             <nil key="title"/>
                             <barButtonItem key="leftBarButtonItem" title="ппроп" springLoaded="YES" changesSelectionAsPrimaryAction="YES" id="WCU-iI-Cdh">
                                 <view key="customView" contentMode="scaleToFill" id="9xM-Vy-zzE">
-                                    <rect key="frame" x="16" y="5.5" width="178" height="33"/>
+                                    <rect key="frame" x="20" y="5.5" width="178" height="33"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Фильмы" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INd-t7-Vmh">
@@ -64,7 +65,7 @@
                     </items>
                 </navigationBar>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="AUK-fT-nAx">
-                    <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                    <rect key="frame" x="0.0" y="92" width="414" height="770"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dU6-fv-ECv">
                         <size key="itemSize" width="128" height="128"/>
@@ -74,7 +75,7 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vfB-1w-f0r" userLabel="ErrorView">
-                    <rect key="frame" x="98" y="232.5" width="124" height="147"/>
+                    <rect key="frame" x="145" y="403.5" width="124" height="147"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error" translatesAutoresizingMaskIntoConstraints="NO" id="e9f-u3-qgB">
                             <rect key="frame" x="15" y="0.0" width="94.5" height="82"/>
@@ -106,14 +107,15 @@
                         </button>
                     </subviews>
                 </stackView>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="RkZ-Za-F6g">
-                    <rect key="frame" x="150" y="451" width="20" height="20"/>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="1aX-0K-ckC">
+                    <rect key="frame" x="197" y="751" width="20" height="20"/>
                 </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="AUK-fT-nAx" secondAttribute="bottom" id="ABp-Xh-Ix6"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="1aX-0K-ckC" secondAttribute="bottom" constant="91" id="DSI-7Z-nv0"/>
                 <constraint firstItem="ChH-nC-HAM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Fbn-Kc-F3a"/>
                 <constraint firstItem="vfB-1w-f0r" firstAttribute="centerY" secondItem="AUK-fT-nAx" secondAttribute="centerY" id="MKd-ap-kgy"/>
                 <constraint firstItem="AUK-fT-nAx" firstAttribute="top" secondItem="ChH-nC-HAM" secondAttribute="bottom" id="NPg-4p-g5S"/>
@@ -123,10 +125,9 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AUK-fT-nAx" secondAttribute="trailing" id="hTW-Nz-CoW"/>
                 <constraint firstItem="vfB-1w-f0r" firstAttribute="centerX" secondItem="AUK-fT-nAx" secondAttribute="centerX" id="oqo-69-bw3"/>
                 <constraint firstItem="ChH-nC-HAM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="qHi-1d-b7T"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="RkZ-Za-F6g" secondAttribute="bottom" constant="200" id="u4o-Yb-EwV"/>
-                <constraint firstItem="RkZ-Za-F6g" firstAttribute="centerY" secondItem="AUK-fT-nAx" secondAttribute="centerY" id="zxY-xa-WDV"/>
+                <constraint firstItem="1aX-0K-ckC" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="qxD-tB-vD2"/>
             </constraints>
-            <point key="canvasLocation" x="123.75" y="-12.67605633802817"/>
+            <point key="canvasLocation" x="123.18840579710145" y="-12.723214285714285"/>
         </view>
     </objects>
     <resources>

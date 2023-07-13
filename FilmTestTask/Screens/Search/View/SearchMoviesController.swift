@@ -9,6 +9,8 @@ import UIKit
 
 protocol SearchMoviesViewProtocol {
     func success()
+    
+    func failure()
 }
 
 final class SearchMoviesController: UIViewController {
@@ -16,6 +18,8 @@ final class SearchMoviesController: UIViewController {
     var presenter: SearchMoviesPresenterProtocol
     
     private let myCompositionalLayout = MyCompositionalLayout()
+    
+    @IBOutlet weak var notFound: UIView!
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -52,20 +56,27 @@ final class SearchMoviesController: UIViewController {
     }
 }
 extension SearchMoviesController: SearchMoviesViewProtocol {
+    
     func success() {
+        notFound.isHidden = true
+        collectionView.reloadData()
+    }
+    
+    func failure() {
+        notFound.isHidden = false
         collectionView.reloadData()
     }
 }
 extension SearchMoviesController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter.listTopMovies.count
+        presenter.foundMovies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.identifire, for: indexPath) as? MovieCell else {
             return UICollectionViewCell()
         }
-        cell.configure(with: presenter.listTopMovies[indexPath.row])
+        cell.configure(with: presenter.foundMovies[indexPath.row])
         return cell
     }
     

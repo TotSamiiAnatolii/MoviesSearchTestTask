@@ -14,6 +14,8 @@ protocol MainMoviesListViewProtocol {
     func failure()
     
     func noInternetAlertManagement(isHidden: Bool)
+    
+    func controlActivityIndicator(state: Bool)
 }
 
 final class MainViewController: UIViewController {
@@ -25,6 +27,8 @@ final class MainViewController: UIViewController {
     @IBOutlet weak var repeatButton: UIButton!
     
     @IBOutlet weak var noInternetStackView: UIStackView!
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private let myCompositionalLayout = MyCompositionalLayout()
     
@@ -41,6 +45,7 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
         prepareCollectionView()
+        activityIndicator.isHidden = true
     }
     
     private func prepareCollectionView() {
@@ -85,15 +90,25 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 }
 extension MainViewController: MainMoviesListViewProtocol {
+    
+    func controlActivityIndicator(state: Bool) {
+        switch state {
+        case true:
+            activityIndicator.startAnimating()
+            activityIndicator.isHidden = false
+        case false:
+            activityIndicator.stopAnimating()
+            activityIndicator.isHidden = true
+        }
+    }
+    
     func noInternetAlertManagement(isHidden: Bool) {
         noInternetStackView.isHidden = isHidden
     }
-    
 
     func success() {
         noInternetAlertManagement(isHidden: true)
         collectionView.reloadData()
-        
     }
     
     func failure() {

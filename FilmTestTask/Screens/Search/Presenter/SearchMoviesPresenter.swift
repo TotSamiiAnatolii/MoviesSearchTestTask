@@ -19,7 +19,7 @@ protocol SearchMoviesPresenterProtocol {
     
     func map(model: [Film]) -> [MovieCellModel]
         
-    var listTopMovies: [MovieCellModel] {get set}
+    var foundMovies: [MovieCellModel] {get set}
 }
 
 final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
@@ -30,7 +30,7 @@ final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
     
     var router: RouterProtocol
     
-    var listTopMovies: [MovieCellModel] = []
+    var foundMovies: [MovieCellModel] = []
     
     init(networkService: NetworkServiceProtocol, router: RouterProtocol) {
         self.networkService = networkService
@@ -38,19 +38,22 @@ final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
     }
     
     func showDetailMovie(index: Int) {
-        router.showMovie(id: listTopMovies[index].id)
+        router.showMovie(id: foundMovies[index].id)
     }
     
     func searchMovies(title movie: String) {
         networkService.searchMovie(title: movie) { result in
             switch result {
             case .success(let success):
-                self.listTopMovies = self.map(model: success.films)
+                self.foundMovies = self.map(model: success.films)
                 DispatchQueue.main.async {
                     self.view?.success()
                 }
-            case .failure(let failure):
-                print(failure)
+            case .failure(_):
+                self.foundMovies.removeAll()
+                DispatchQueue.main.async {
+                    self.view?.failure()
+                }
             }
         }
     }

@@ -18,12 +18,12 @@ protocol SearchMoviesPresenterProtocol {
     func popToRoot()
     
     func map(model: [Film]) -> [MovieCellModel]
-        
+    
     var foundMovies: [MovieCellModel] {get set}
 }
 
 final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
-  
+    
     var view: SearchMoviesViewProtocol?
     
     let networkService: NetworkServiceProtocol
@@ -64,7 +64,7 @@ final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
     
     func map(model: [Film]) -> [MovieCellModel] {
         return model.map { currency in
-
+            
             return MovieCellModel(
                 id: currency.filmId,
                 poster: currency.posterUrl,

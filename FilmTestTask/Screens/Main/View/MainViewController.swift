@@ -30,6 +30,8 @@ final class MainViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    private let refreshControl = UIRefreshControl()
+    
     private let myCompositionalLayout = MyCompositionalLayout()
     
     init(presenter: MainMoviesListPresenterProtocol) {
@@ -54,14 +56,19 @@ final class MainViewController: UIViewController {
         collectionView.collectionViewLayout = myCompositionalLayout.setLayoutCollection()
         collectionView.register(UINib(nibName: MovieCell.identifire, bundle: nil), forCellWithReuseIdentifier: MovieCell.identifire)
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 300, right: 0)
+        collectionView.addSubview(refreshControl)
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
     }
-    
     
     @IBAction func searchButton(_ sender: Any) {
         presenter.showSearchMovies()
     }
     
     @IBAction func repeatButton(_ sender: Any) {
+        presenter.getListMovie(page: 1)
+    }
+    
+    @objc func refresh(_ sender:AnyObject) {
         presenter.getListMovie(page: 1)
     }
 }
@@ -107,6 +114,7 @@ extension MainViewController: MainMoviesListViewProtocol {
     }
 
     func success() {
+        refreshControl.endRefreshing()
         noInternetAlertManagement(isHidden: true)
         collectionView.reloadData()
     }

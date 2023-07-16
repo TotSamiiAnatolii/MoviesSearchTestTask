@@ -11,30 +11,24 @@ protocol MainMoviesListPresenterProtocol: AnyObject {
     
     init(networkService: NetworkServiceProtocol, router: RouterProtocol)
     
-    var listTopMovies: [MovieCellModel] {get set}
-    
     var currentPage: Int {get set}
     
     func getListMovie(page: Int)
     
-    func showMovie(index: Int)
+    func showMovie(id: Int)
     
     func showSearchMovies()
     
-    func map(model: [Film]) -> [MovieCellModel]
-    
-    func failure(error: Error)
+    func viewDidLoad()
     
     func supplement()
 }
 
 final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     
-    var view: MainMoviesListViewProtocol?
+    weak var view: MainMoviesListViewProtocol?
     
     let networkService: NetworkServiceProtocol
-    
-    var listTopMovies: [MovieCellModel] = []
     
     var currentPage: Int = 1
     
@@ -43,17 +37,21 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     init(networkService: NetworkServiceProtocol, router: RouterProtocol) {
         self.router = router
         self.networkService = networkService
-        getListMovie(page: 1)
+        
+    }
+    
+    func viewDidLoad() {
+        getListMovie(page: currentPage)
     }
     
     func getListMovie(page: Int) {
+        let maper = Maper()
         view?.noInternetAlertManagement(isHidden: true)
         networkService.getTopListMovies(page: page) { result in
             switch result {
             case .success(let success):
-                self.listTopMovies = self.map(model: success.films)
                 DispatchQueue.main.async {
-                    self.view?.success()
+                    self.view?.success(model: maper.map(model: success.films))
                 }
             case .failure(_):
                 DispatchQueue.main.async {
@@ -63,47 +61,17 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
         }
     }
     
-    func showMovie(index: Int) {
-        router.showMovie(id: listTopMovies[index].id)
+    func showMovie(id: Int) {
+        router.showMovie(id: id)
     }
     
     func showSearchMovies() {
         router.showSearchMovies()
     }
     
-    func map(model: [Film]) -> [MovieCellModel] {
-        return model.map { currency in
-
-            return MovieCellModel(
-                id: currency.filmId,
-                poster: currency.posterURLPreview ?? currency.posterUrl,
-                movieTitle: currency.nameRu,
-                filmGenre: currency.genres.first?.genre ?? "Error")
-        }
-    }
-    
-    func failure(error: Error) {
-        router.alert(title: "Error",
-                     message: error.localizedDescription,
-                     btnTitle: "Повторить") {
-            self.getListMovie(page: self.currentPage)
-        }
-    }
-    
     func supplement() {
         currentPage += 1
         view?.controlActivityIndicator(state: true)
-        networkService.getTopListMovies(page: currentPage) { result in
-            switch result {
-            case .success(let success):
-                self.listTopMovies.append(contentsOf: self.map(model: success.films))
-                DispatchQueue.main.async {
-                    self.view?.success()
-                }
-                self.view?.controlActivityIndicator(state: false)
-            case .failure(let failure):
-                print(failure)
-            }
-        }
+        getListMovie(page: currentPage)
     }
 }

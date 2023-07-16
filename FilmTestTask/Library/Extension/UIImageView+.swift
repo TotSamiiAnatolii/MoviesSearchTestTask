@@ -13,6 +13,8 @@ extension UIImageView {
     
     func loadImage(urlString: String) {
         
+        tag = urlString.hashValue
+        
         if let image = imageCashe.object(forKey: urlString as NSString) {
             self.image = image as? UIImage
             return
@@ -21,12 +23,16 @@ extension UIImageView {
             return
         }
         
-        DispatchQueue.global(qos: .userInteractive).async{
+        DispatchQueue.global(qos: .userInitiated).async{
             if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
+                if let image = UIImage(data: data),
+                   let resultImage = image.copy(newSize: CGSize(width: 60, height: 100)) {
+                    
                     DispatchQueue.main.async {
-                        imageCashe.setObject(image, forKey: urlString as NSString)
-                        self.image = image
+                        imageCashe.setObject(resultImage, forKey: urlString as NSString)
+                        if self.tag == urlString.hashValue {
+                            self.image = resultImage
+                        }
                     }
                 }
             }

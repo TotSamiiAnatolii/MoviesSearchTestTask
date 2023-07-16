@@ -7,9 +7,9 @@
 
 import UIKit
 
-protocol MainMoviesListViewProtocol {
-    
-    func success()
+protocol MainMoviesListViewProtocol: AnyObject  {
+   
+    func success(model: [MovieCellModel])
     
     func failure()
     
@@ -34,6 +34,8 @@ final class MainViewController: UIViewController {
     
     private let myCompositionalLayout = MyCompositionalLayout()
     
+    private var listTopMovies: [MovieCellModel] = []
+    
     init(presenter: MainMoviesListPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "MainViewController", bundle: nil)
@@ -47,6 +49,7 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
         prepareCollectionView()
+        presenter.viewDidLoad()
         activityIndicator.isHidden = true
     }
     
@@ -75,23 +78,23 @@ final class MainViewController: UIViewController {
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter.listTopMovies.count
+        listTopMovies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.identifire, for: indexPath) as? MovieCell else {
             return UICollectionViewCell()
         }
-        cell.configure(with: presenter.listTopMovies[indexPath.row])
+        cell.configure(with: listTopMovies[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter.showMovie(index: indexPath.row)
+        presenter.showMovie(id: listTopMovies[indexPath.row].id)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row == presenter.listTopMovies.count - 1 {
+        if indexPath.row == listTopMovies.count - 1 {
             presenter.supplement()
          }
     }
@@ -113,9 +116,11 @@ extension MainViewController: MainMoviesListViewProtocol {
         noInternetStackView.isHidden = isHidden
     }
 
-    func success() {
+    func success(model: [MovieCellModel]) {
+        listTopMovies.append(contentsOf: model)
         refreshControl.endRefreshing()
         noInternetAlertManagement(isHidden: true)
+        controlActivityIndicator(state: false)
         collectionView.reloadData()
     }
     

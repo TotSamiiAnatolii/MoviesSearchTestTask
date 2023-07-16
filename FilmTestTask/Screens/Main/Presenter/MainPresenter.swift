@@ -11,8 +11,6 @@ protocol MainMoviesListPresenterProtocol: AnyObject {
     
     init(networkService: NetworkServiceProtocol, router: RouterProtocol)
     
-    var currentPage: Int {get set}
-    
     func getListMovie(page: Int)
     
     func showMovie(id: Int)
@@ -28,11 +26,11 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     
     weak var view: MainMoviesListViewProtocol?
     
-    let networkService: NetworkServiceProtocol
+    private let networkService: NetworkServiceProtocol
     
-    var currentPage: Int = 1
+    private var currentPage: Int = 1
     
-    var router: RouterProtocol
+    private var router: RouterProtocol
     
     init(networkService: NetworkServiceProtocol, router: RouterProtocol) {
         self.router = router

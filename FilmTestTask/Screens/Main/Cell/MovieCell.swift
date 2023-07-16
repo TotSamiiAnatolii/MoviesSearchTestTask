@@ -57,7 +57,6 @@ extension MovieCell: ConfigureView {
         self.filmGenre.text = model.filmGenre
         self.poster.loadImage(urlString: model.poster)
     }
-    
     typealias Model = MovieCellModel
 }
 

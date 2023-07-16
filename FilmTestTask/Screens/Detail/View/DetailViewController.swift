@@ -52,7 +52,6 @@ final class DetailViewController: UIViewController {
 extension DetailViewController: DetailMovieViewProtocol {
  
     func success(model: DetailModel) {
-   
         poster.loadImage(urlString: model.poster)
         movieTitle.text = model.movieTitle
         filmDescription.text = model.description

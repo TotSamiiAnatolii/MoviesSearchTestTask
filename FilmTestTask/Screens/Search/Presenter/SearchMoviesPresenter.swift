@@ -11,46 +11,39 @@ protocol SearchMoviesPresenterProtocol {
     
     init(networkService: NetworkServiceProtocol, router: RouterProtocol)
     
-    func showDetailMovie(index: Int)
+    func showDetailMovie(id: Int)
     
     func searchMovies(title movie: String)
     
     func popToRoot()
-    
-    func map(model: [Film]) -> [MovieCellModel]
-    
-    var foundMovies: [MovieCellModel] {get set}
 }
 
 final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
     
-    var view: SearchMoviesViewProtocol?
+    weak var view: SearchMoviesViewProtocol?
     
-    let networkService: NetworkServiceProtocol
+    private let networkService: NetworkServiceProtocol
     
-    var router: RouterProtocol
-    
-    var foundMovies: [MovieCellModel] = []
+    private var router: RouterProtocol
     
     init(networkService: NetworkServiceProtocol, router: RouterProtocol) {
         self.networkService = networkService
         self.router = router
     }
     
-    func showDetailMovie(index: Int) {
-        router.showMovie(id: foundMovies[index].id)
+    func showDetailMovie(id: Int) {
+        router.showMovie(id: id)
     }
     
     func searchMovies(title movie: String) {
+        let maper = Maper()
         networkService.searchMovie(title: movie) { result in
             switch result {
             case .success(let success):
-                self.foundMovies = self.map(model: success.films)
                 DispatchQueue.main.async {
-                    self.view?.success()
+                    self.view?.success(model: maper.map(model: success.films))
                 }
             case .failure(_):
-                self.foundMovies.removeAll()
                 DispatchQueue.main.async {
                     self.view?.failure()
                 }
@@ -60,16 +53,5 @@ final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
     
     func popToRoot() {
         router.popToRoot()
-    }
-    
-    func map(model: [Film]) -> [MovieCellModel] {
-        return model.map { currency in
-            
-            return MovieCellModel(
-                id: currency.filmId,
-                poster: currency.posterUrl,
-                movieTitle: currency.nameRu,
-                filmGenre: currency.genres.first?.genre ?? "Error")
-        }
     }
 }

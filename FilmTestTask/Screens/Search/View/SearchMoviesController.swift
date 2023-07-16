@@ -7,8 +7,8 @@
 
 import UIKit
 
-protocol SearchMoviesViewProtocol {
-    func success()
+protocol SearchMoviesViewProtocol: AnyObject {
+    func success(model: [MovieCellModel])
     
     func failure()
 }
@@ -23,6 +23,7 @@ final class SearchMoviesController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    private var foundMovies: [MovieCellModel] = []
     
     @IBAction func search(_ sender: UITextField) {
         presenter.searchMovies(title: sender.text!)
@@ -57,30 +58,32 @@ final class SearchMoviesController: UIViewController {
 }
 extension SearchMoviesController: SearchMoviesViewProtocol {
     
-    func success() {
+    func success(model: [MovieCellModel]) {
+        foundMovies = model
         notFound.isHidden = true
         collectionView.reloadData()
     }
     
     func failure() {
+        foundMovies.removeAll()
         notFound.isHidden = false
         collectionView.reloadData()
     }
 }
 extension SearchMoviesController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter.foundMovies.count
+        foundMovies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.identifire, for: indexPath) as? MovieCell else {
             return UICollectionViewCell()
         }
-        cell.configure(with: presenter.foundMovies[indexPath.row])
+        cell.configure(with: foundMovies[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter.showDetailMovie(index: indexPath.row)
+        presenter.showDetailMovie(id: foundMovies[indexPath.row].id)
     }
 }

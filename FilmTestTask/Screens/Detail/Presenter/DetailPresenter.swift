@@ -20,9 +20,9 @@ final class DetailMoviePresenter: DetailMoviePresenterProtocol {
     
     weak var view: DetailMovieViewProtocol?
     
-    let networkService: NetworkServiceProtocol
+    private let networkService: NetworkServiceProtocol
     
-    var router: RouterProtocol
+    private var router: RouterProtocol
     
     init(id: Int, networkService: NetworkServiceProtocol, router: RouterProtocol) {
         self.networkService = networkService

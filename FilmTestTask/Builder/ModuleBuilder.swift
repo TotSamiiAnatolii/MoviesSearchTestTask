@@ -11,13 +11,17 @@ protocol AssemblyBuilderProtocol {
     func createMainMoviesList(router: RouterProtocol) -> UIViewController
     func createSearchMovies(router: RouterProtocol) -> UIViewController
     func createDetailMovie(id: Int, router: RouterProtocol) -> UIViewController
-    func createAlert(title: String, message: String, btnTitle: String, action: @escaping (() -> Void)) -> UIAlertController
 }
 
 final class ModuleBuilder: AssemblyBuilderProtocol {
- 
+    
+    let networkService: NetworkManager
+    
+    init(networkService: NetworkManager) {
+        self.networkService = networkService
+    }
+    
     func createMainMoviesList(router: RouterProtocol) -> UIViewController {
-        let networkService = NetworkManager()
         let presenter = MainMoviesListPresenter(networkService: networkService, router: router)
         let view = MainViewController(presenter: presenter)
         presenter.view = view
@@ -25,7 +29,6 @@ final class ModuleBuilder: AssemblyBuilderProtocol {
     }
     
     func createDetailMovie(id: Int, router: RouterProtocol) -> UIViewController {
-        let networkService = NetworkManager()
         let presenter = DetailMoviePresenter(id: id, networkService: networkService, router: router)
         let view = DetailViewController(presenter: presenter)
         presenter.view = view
@@ -33,20 +36,9 @@ final class ModuleBuilder: AssemblyBuilderProtocol {
     }
     
     func createSearchMovies(router: RouterProtocol) -> UIViewController {
-        let networkService = NetworkManager()
         let presenter = SearchMoviesPresenter(networkService: networkService, router: router)
         let view = SearchMoviesController(presenter: presenter)
         presenter.view = view
         return view
-    }
-    
-    func createAlert(title: String, message: String, btnTitle: String, action: @escaping (() -> Void)) -> UIAlertController {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let action = UIAlertAction(title: btnTitle, style: .default) { _ in
-            action()
-        }
-        alertController.addAction(action)
-        return alertController
     }
 }

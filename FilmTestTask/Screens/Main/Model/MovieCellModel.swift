@@ -13,6 +13,5 @@ struct MovieCellModel {
     let poster: String
     let movieTitle: String
     let filmGenre: String
-    
-  
 }
+

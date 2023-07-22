@@ -20,6 +20,8 @@ protocol MainMoviesListPresenterProtocol: AnyObject {
     func viewDidLoad()
     
     func supplement()
+    
+    func setViewState()
 }
 
 final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
@@ -28,18 +30,24 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     
     private let networkService: NetworkServiceProtocol
     
-    private var currentPage: Int = 1
+    private let pagingFile = PagingFile(currentPage: 1)
+    
+    private var stateView: StateViewModel {
+        didSet {
+            setViewState()
+        }
+    }
     
     private var router: RouterProtocol
     
     init(networkService: NetworkServiceProtocol, router: RouterProtocol) {
         self.router = router
         self.networkService = networkService
-        
+        self.stateView = .loading
     }
     
     func viewDidLoad() {
-        getListMovie(page: currentPage)
+        getListMovie(page: pagingFile.nextPage())
     }
     
     func getListMovie(page: Int) {
@@ -49,11 +57,12 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
             switch result {
             case .success(let success):
                 DispatchQueue.main.async {
-                    self.view?.success(model: maper.map(model: success.films))
+                    self.pagingFile.pageCount = success.pagesCount
+                    self.stateView = .populated(maper.map(model: success.films))
                 }
-            case .failure(_):
+            case .failure(let error):
                 DispatchQueue.main.async {
-                    self.view?.failure()
+                    self.stateView = .error(error)
                 }
             }
         }
@@ -68,8 +77,21 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     }
     
     func supplement() {
-        currentPage += 1
-        view?.controlActivityIndicator(state: true)
-        getListMovie(page: currentPage)
+        pagingFile.hasMorePages ? getListMovie(page: pagingFile.nextPage()) : view?.controlActivityIndicator(state: false)
+    }
+    
+    func setViewState() {
+        switch stateView {
+        case .loading:
+            view?.controlActivityIndicator(state: false)
+        case .paging(let array):
+            view?.success(model: array)
+        case .populated(let array):
+            view?.success(model: array)
+        case .empty:
+            view?.success(model: [])
+        case .error(_):
+            view?.failure()
+        }
     }
 }

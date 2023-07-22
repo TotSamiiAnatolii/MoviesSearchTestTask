@@ -15,7 +15,7 @@ protocol SearchMoviesViewProtocol: AnyObject {
 
 final class SearchMoviesController: UIViewController {
     
-    var presenter: SearchMoviesPresenterProtocol
+    private var presenter: SearchMoviesPresenterProtocol
     
     private let myCompositionalLayout = MyCompositionalLayout()
     

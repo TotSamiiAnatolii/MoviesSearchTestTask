@@ -90,7 +90,10 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter.showMovie(id: listTopMovies[indexPath.row].id)
+        guard let movie = listTopMovies[safe: indexPath.row] else {
+            return
+        }
+        presenter.showMovie(id: movie.id)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

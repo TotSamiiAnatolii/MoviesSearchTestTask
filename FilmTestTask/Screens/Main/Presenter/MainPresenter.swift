@@ -11,6 +11,8 @@ protocol MainMoviesListPresenterProtocol: AnyObject {
     
     init(networkService: NetworkServiceProtocol, router: RouterProtocol)
     
+    var startNumberPagin: Int {get}
+    
     func getListMovie(page: Int)
     
     func showMovie(id: Int)
@@ -23,6 +25,11 @@ protocol MainMoviesListPresenterProtocol: AnyObject {
     
     func setViewState()
 }
+extension MainMoviesListPresenterProtocol {
+    func getListMovie() {
+        getListMovie(page: startNumberPagin)
+    }
+}
 
 final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     
@@ -30,7 +37,9 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     
     private let networkService: NetworkServiceProtocol
     
-    private let pagingFile = PagingFile(currentPage: 1)
+    internal let startNumberPagin = 1
+    
+    private lazy var pagingFile = PagingFile(currentPage: startNumberPagin)
     
     private var stateView: StateViewModel {
         didSet {
@@ -50,7 +59,7 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
         getListMovie(page: pagingFile.nextPage())
     }
     
-    func getListMovie(page: Int) {
+    func getListMovie(page: Int = 1) {
         let maper = Maper()
         view?.noInternetAlertManagement(isHidden: true)
         networkService.getTopListMovies(page: page) { result in
@@ -77,7 +86,7 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     }
     
     func supplement() {
-        stateView = .loading
+        stateView = .paging
         pagingFile.hasMorePages ? getListMovie(page: pagingFile.nextPage()) : view?.controlActivityIndicator(state: false)
     }
     
@@ -85,8 +94,8 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
         switch stateView {
         case .loading:
             view?.controlActivityIndicator(state: true)
-        case .paging(let array, let isFully):
-            view?.success(model: array)
+        case .paging:
+            view?.controlActivityIndicator(state: true)
         case .populated(let array):
             view?.success(model: array)
         case .empty:

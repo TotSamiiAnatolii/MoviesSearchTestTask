@@ -68,11 +68,11 @@ final class MainViewController: UIViewController {
     }
     
     @IBAction func repeatButton(_ sender: Any) {
-        presenter.getListMovie(page: 1)
+        presenter.getListMovie()
     }
     
     @objc func refresh(_ sender:AnyObject) {
-        presenter.getListMovie(page: 1)
+        presenter.getListMovie()
     }
 }
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -105,6 +105,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 extension MainViewController: MainMoviesListViewProtocol {
     
     func controlActivityIndicator(state: Bool) {
+   
         switch state {
         case true:
             activityIndicator.startAnimating()

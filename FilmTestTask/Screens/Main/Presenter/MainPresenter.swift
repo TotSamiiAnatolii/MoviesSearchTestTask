@@ -77,14 +77,15 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     }
     
     func supplement() {
+        stateView = .loading
         pagingFile.hasMorePages ? getListMovie(page: pagingFile.nextPage()) : view?.controlActivityIndicator(state: false)
     }
     
     func setViewState() {
         switch stateView {
         case .loading:
-            view?.controlActivityIndicator(state: false)
-        case .paging(let array):
+            view?.controlActivityIndicator(state: true)
+        case .paging(let array, let isFully):
             view?.success(model: array)
         case .populated(let array):
             view?.success(model: array)

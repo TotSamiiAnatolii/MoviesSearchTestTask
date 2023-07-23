@@ -96,7 +96,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row == listTopMovies.count - 1 {
             presenter.supplement()
-         }
+        }
     }
 }
 extension MainViewController: MainMoviesListViewProtocol {

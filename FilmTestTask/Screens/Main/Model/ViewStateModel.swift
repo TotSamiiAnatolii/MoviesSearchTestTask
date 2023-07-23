@@ -10,7 +10,7 @@ import Foundation
 enum StateViewModel {
     
     case loading
-    case paging([MovieCellModel])
+    case paging([MovieCellModel], isFully: Bool)
     case populated([MovieCellModel])
     case empty
     case error(Error)

@@ -140,8 +140,6 @@ extension MainViewController: MainMoviesListViewProtocol {
         listTopMovies.append(contentsOf: model)
         refreshControl.endRefreshing()
         noInternetAlertManagement(isHidden: true)
-//        controlActivityIndicator(indicator: .main)
-//        controlActivityIndicator(indicator: .paging)
         collectionView.reloadData()
     }
     

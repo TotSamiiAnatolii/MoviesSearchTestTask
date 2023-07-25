@@ -96,10 +96,10 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
             view?.controlActivityIndicator(indicator: .main(.startAnimating))
         case .paging:
             view?.controlActivityIndicator(indicator: .paging(.startAnimating))
-        case .populated(let array):
-            view?.success(model: array)
+        case .populated(let movie):
+            view?.success(model: movie)
             view?.controlActivityIndicator(indicator: .main(.stopAnimating))
-//            view?.controlActivityIndicator(indicator: .main(.startAnimating))
+            view?.controlActivityIndicator(indicator: .paging(.stopAnimating))
         case .empty:
             view?.success(model: [])
         case .error(_):

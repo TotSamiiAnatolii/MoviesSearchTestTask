@@ -12,6 +12,8 @@ protocol DetailMovieViewProtocol: AnyObject {
     func success(model: DetailModel)
     
     func failure()
+    
+    func configureView(model: DetailModel)
 }
 
 final class DetailViewController: UIViewController {
@@ -50,17 +52,21 @@ final class DetailViewController: UIViewController {
     }
 }
 extension DetailViewController: DetailMovieViewProtocol {
- 
+    
     func success(model: DetailModel) {
+        configureView(model: model)
+    }
+    
+    func failure() {
+        
+    }
+    
+    func configureView(model: DetailModel) {
         poster.loadImage(urlString: model.poster)
         movieTitle.text = model.movieTitle
         filmDescription.text = model.description
         genre.text = model.movieGenre
         country.text = model.country
         year.text = model.year
-    }
-    
-    func failure() {
-        
     }
 }

@@ -16,9 +16,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="FilmTestTask" customModuleProvider="target">
             <connections>
-                <outlet property="activityIndicator" destination="1aX-0K-ckC" id="1Dr-SP-MtM"/>
                 <outlet property="collectionView" destination="AUK-fT-nAx" id="hu6-F6-YwU"/>
+                <outlet property="mainActivityIndicator" destination="ylU-f6-lih" id="vOj-Bi-IuU"/>
                 <outlet property="noInternetStackView" destination="vfB-1w-f0r" id="ght-kr-lLZ"/>
+                <outlet property="pagingActivityIndicator" destination="1aX-0K-ckC" id="1Dr-SP-MtM"/>
                 <outlet property="repeatButton" destination="M6e-Sp-AGB" id="8Ap-r2-n08"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -107,8 +108,11 @@
                         </button>
                     </subviews>
                 </stackView>
-                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="1aX-0K-ckC">
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="1aX-0K-ckC" userLabel="Paging Activity Indicator">
                     <rect key="frame" x="197" y="751" width="20" height="20"/>
+                </activityIndicatorView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ylU-f6-lih" userLabel="Main Activity Indicator">
+                    <rect key="frame" x="197" y="438" width="20" height="20"/>
                 </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -122,7 +126,9 @@
                 <constraint firstItem="ChH-nC-HAM" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="YNA-t5-4cp"/>
                 <constraint firstItem="ChH-nC-HAM" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="a66-Sb-WvG"/>
                 <constraint firstItem="AUK-fT-nAx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ahG-o2-eNZ"/>
+                <constraint firstItem="ylU-f6-lih" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="djH-AP-j1O"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AUK-fT-nAx" secondAttribute="trailing" id="hTW-Nz-CoW"/>
+                <constraint firstItem="ylU-f6-lih" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="inx-PH-GyX"/>
                 <constraint firstItem="vfB-1w-f0r" firstAttribute="centerX" secondItem="AUK-fT-nAx" secondAttribute="centerX" id="oqo-69-bw3"/>
                 <constraint firstItem="ChH-nC-HAM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="qHi-1d-b7T"/>
                 <constraint firstItem="1aX-0K-ckC" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="qxD-tB-vD2"/>

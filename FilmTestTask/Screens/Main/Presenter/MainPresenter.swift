@@ -41,7 +41,7 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     
     private lazy var pagingFile = PagingFile(currentPage: startNumberPagin)
     
-    private var stateView: StateViewModel {
+    private var stateView: StateViewModel = .loading  {
         didSet {
             setViewState()
         }
@@ -52,10 +52,10 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     init(networkService: NetworkServiceProtocol, router: RouterProtocol) {
         self.router = router
         self.networkService = networkService
-        self.stateView = .loading
     }
     
     func viewDidLoad() {
+        setViewState()
         getListMovie(page: pagingFile.nextPage())
     }
     
@@ -87,17 +87,19 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     
     func supplement() {
         stateView = .paging
-        pagingFile.hasMorePages ? getListMovie(page: pagingFile.nextPage()) : view?.controlActivityIndicator(state: false)
+        pagingFile.hasMorePages ? getListMovie(page: pagingFile.nextPage()) : view?.controlActivityIndicator(indicator: .paging(.stopAnimating))
     }
     
     func setViewState() {
         switch stateView {
         case .loading:
-            view?.controlActivityIndicator(state: true)
+            view?.controlActivityIndicator(indicator: .main(.startAnimating))
         case .paging:
-            view?.controlActivityIndicator(state: true)
+            view?.controlActivityIndicator(indicator: .paging(.startAnimating))
         case .populated(let array):
             view?.success(model: array)
+            view?.controlActivityIndicator(indicator: .main(.stopAnimating))
+//            view?.controlActivityIndicator(indicator: .main(.startAnimating))
         case .empty:
             view?.success(model: [])
         case .error(_):

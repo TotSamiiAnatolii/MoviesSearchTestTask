@@ -15,7 +15,7 @@ protocol MainMoviesListViewProtocol: AnyObject  {
     
     func noInternetAlertManagement(isHidden: Bool)
     
-    func controlActivityIndicator(state: Bool)
+    func controlActivityIndicator(indicator: LoadingIndicator)
 }
 
 final class MainViewController: UIViewController {
@@ -28,7 +28,9 @@ final class MainViewController: UIViewController {
     
     @IBOutlet weak var noInternetStackView: UIStackView!
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var pagingActivityIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet weak var mainActivityIndicator: UIActivityIndicatorView!
     
     private let refreshControl = UIRefreshControl()
     
@@ -49,8 +51,10 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
         prepareCollectionView()
+       
+        pagingActivityIndicator.isHidden = true
+        mainActivityIndicator.isHidden = true
         presenter.viewDidLoad()
-        activityIndicator.isHidden = true
     }
     
     private func prepareCollectionView() {
@@ -72,6 +76,7 @@ final class MainViewController: UIViewController {
     }
     
     @objc func refresh(_ sender:AnyObject) {
+        listTopMovies.removeAll()
         presenter.getListMovie()
     }
 }
@@ -104,18 +109,29 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 }
 extension MainViewController: MainMoviesListViewProtocol {
     
-    func controlActivityIndicator(state: Bool) {
-   
-        switch state {
-        case true:
-            activityIndicator.startAnimating()
-            activityIndicator.isHidden = false
-        case false:
-            activityIndicator.stopAnimating()
-            activityIndicator.isHidden = true
+    func controlActivityIndicator(indicator: LoadingIndicator) {
+        switch indicator {
+        case .main(let state):
+            switch state {
+            case .startAnimating:
+                mainActivityIndicator.isHidden = false
+                mainActivityIndicator.startAnimating()
+            case .stopAnimating:
+                mainActivityIndicator.isHidden = true
+                mainActivityIndicator.stopAnimating()
+            }
+        case .paging(let state):
+            switch state {
+            case .startAnimating:
+                pagingActivityIndicator.isHidden = false
+                pagingActivityIndicator.startAnimating()
+            case .stopAnimating:
+                pagingActivityIndicator.isHidden = true
+                pagingActivityIndicator.stopAnimating()
+            }
         }
     }
-    
+
     func noInternetAlertManagement(isHidden: Bool) {
         noInternetStackView.isHidden = isHidden
     }
@@ -124,7 +140,8 @@ extension MainViewController: MainMoviesListViewProtocol {
         listTopMovies.append(contentsOf: model)
         refreshControl.endRefreshing()
         noInternetAlertManagement(isHidden: true)
-        controlActivityIndicator(state: false)
+//        controlActivityIndicator(indicator: .main)
+//        controlActivityIndicator(indicator: .paging)
         collectionView.reloadData()
     }
     

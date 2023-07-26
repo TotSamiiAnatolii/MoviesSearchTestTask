@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct MovieCellModel {
+struct MovieCellModel: Hashable {
     
     let id: Int
     let poster: String

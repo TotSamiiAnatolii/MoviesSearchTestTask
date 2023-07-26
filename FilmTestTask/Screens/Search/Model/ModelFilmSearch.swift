@@ -13,3 +13,14 @@ struct ModelFilmSearch {
     let movieTitle: String
     let filmGenre: String
 }
+
+enum SectionType: Int {
+    case movie
+}
+
+enum StateSearchViewModel {
+    case loading
+    case search([MovieCellModel])
+    case notFound
+    case error(Error)
+}

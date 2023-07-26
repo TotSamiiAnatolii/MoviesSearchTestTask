@@ -8,9 +8,12 @@
 import UIKit
 
 protocol SearchMoviesViewProtocol: AnyObject {
+    
     func success(model: [MovieCellModel])
     
     func failure()
+    
+    func controlViewNotFound(isHidden: Bool)
 }
 
 final class SearchMoviesController: UIViewController {
@@ -22,6 +25,8 @@ final class SearchMoviesController: UIViewController {
     @IBOutlet weak var notFound: UIView!
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    private var dataSource: UICollectionViewDiffableDataSource<SectionType, AnyHashable>?
     
     private var foundMovies: [MovieCellModel] = []
     
@@ -38,16 +43,16 @@ final class SearchMoviesController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
         prepareCollectionView()
+        createDataSource()
     }
-
+    
     private func prepareCollectionView() {
         collectionView.delegate = self
-        collectionView.dataSource = self
         collectionView.collectionViewLayout = myCompositionalLayout.setLayoutCollection()
         collectionView.register(UINib(nibName: MovieCell.identifire, bundle: nil), forCellWithReuseIdentifier: MovieCell.identifire)
     }
@@ -55,33 +60,51 @@ final class SearchMoviesController: UIViewController {
     @IBAction func backButton(_ sender: Any) {
         presenter.popToRoot()
     }
+    
+    private func createDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<SectionType, AnyHashable>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+            let section = SectionType(rawValue: indexPath.section)
+            
+            switch section {
+            case .movie:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.identifire, for: indexPath) as? MovieCell else {
+                    return UICollectionViewCell()
+                }
+                
+                if indexPath.row < self.foundMovies.count {
+                    cell.configure(with: self.foundMovies[indexPath.row])
+                }
+                return cell
+            case .none:
+                return UICollectionViewCell()
+            }
+        })
+    }
+    
+    private func reloadData(array: [MovieCellModel]) {
+        var snapshot = NSDiffableDataSourceSnapshot<SectionType, AnyHashable>()
+        snapshot.appendSections([.movie])
+        snapshot.appendItems(foundMovies, toSection: .movie)
+        dataSource?.apply(snapshot, animatingDifferences: true)
+    }
 }
 extension SearchMoviesController: SearchMoviesViewProtocol {
+    func controlViewNotFound(isHidden: Bool) {
+        notFound.isHidden = isHidden
+    }
+    
     
     func success(model: [MovieCellModel]) {
         foundMovies = model
-        notFound.isHidden = true
-        collectionView.reloadData()
+        reloadData(array: model)
     }
     
     func failure() {
         foundMovies.removeAll()
-        notFound.isHidden = false
         collectionView.reloadData()
     }
 }
-extension SearchMoviesController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        foundMovies.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.identifire, for: indexPath) as? MovieCell else {
-            return UICollectionViewCell()
-        }
-        cell.configure(with: foundMovies[indexPath.row])
-        return cell
-    }
+extension SearchMoviesController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter.showDetailMovie(id: foundMovies[indexPath.row].id)

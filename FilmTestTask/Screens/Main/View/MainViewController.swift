@@ -90,7 +90,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.identifire, for: indexPath) as? MovieCell else {
             return UICollectionViewCell()
         }
-        cell.configure(with: listTopMovies[indexPath.row])
+        if indexPath.row < listTopMovies.count {
+            cell.configure(with: listTopMovies[indexPath.row])
+        }
         return cell
     }
     

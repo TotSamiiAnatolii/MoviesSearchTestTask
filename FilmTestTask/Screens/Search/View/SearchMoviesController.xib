@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -22,39 +22,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lbC-Wc-ZXC">
-                    <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                    <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <items>
-                        <navigationItem id="PE2-N0-C0A">
-                            <nil key="title"/>
-                            <barButtonItem key="leftBarButtonItem" title="Item" image="back" id="mKs-B2-y2n">
-                                <color key="tintColor" red="0.27058823529411763" green="0.3411764705882353" blue="0.63529411764705879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="backButton:" destination="-1" id="uTc-v5-mQi"/>
-                                </connections>
-                            </barButtonItem>
-                            <textField key="titleView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Поиск" textAlignment="natural" minimumFontSize="17" id="V61-vO-imI">
-                                <rect key="frame" x="73" y="0.0" width="247" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <edgeInsets key="layoutMargins" top="8" left="20" bottom="8" right="20"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="search:" destination="-1" eventType="editingChanged" id="4H0-rD-OER"/>
-                                </connections>
-                            </textField>
-                            <centerItemGroups>
-                                <barButtonItemGroup customizationDisposition="fixed" id="mKe-2h-BFJ"/>
-                            </centerItemGroups>
-                        </navigationItem>
-                    </items>
-                </navigationBar>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="TY9-nq-Sin">
-                    <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                    <rect key="frame" x="0.0" y="91" width="375" height="687"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5Pa-IP-gjn">
                         <size key="itemSize" width="128" height="128"/>
@@ -64,7 +36,7 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ica-kx-urm" userLabel="notFound">
-                    <rect key="frame" x="133" y="441.66666666666669" width="127" height="38"/>
+                    <rect key="frame" x="124" y="415.66666666666669" width="127" height="38"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Не найдено" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGv-ef-hP1">
                             <rect key="frame" x="8" y="9" width="111" height="21"/>
@@ -89,23 +61,18 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="lbC-Wc-ZXC" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="3Pw-GF-DT1"/>
-                <constraint firstItem="lbC-Wc-ZXC" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Dv1-wt-Aro"/>
-                <constraint firstItem="TY9-nq-Sin" firstAttribute="top" secondItem="lbC-Wc-ZXC" secondAttribute="bottom" id="FFo-cN-MeZ"/>
-                <constraint firstItem="lbC-Wc-ZXC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Frd-RJ-peB"/>
+                <constraint firstItem="TY9-nq-Sin" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="FFo-cN-MeZ"/>
                 <constraint firstItem="ica-kx-urm" firstAttribute="centerX" secondItem="TY9-nq-Sin" secondAttribute="centerX" id="KwC-rL-HZB"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="TY9-nq-Sin" secondAttribute="bottom" id="RVn-Y1-jGY"/>
                 <constraint firstItem="TY9-nq-Sin" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="nPA-NL-MQc"/>
-                <constraint firstItem="lbC-Wc-ZXC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="oC8-47-aKL"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TY9-nq-Sin" secondAttribute="trailing" id="v0F-3B-W6R"/>
-                <constraint firstItem="lbC-Wc-ZXC" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="vvB-1q-aci"/>
                 <constraint firstItem="ica-kx-urm" firstAttribute="centerY" secondItem="TY9-nq-Sin" secondAttribute="centerY" id="z4O-XD-6Io"/>
             </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <point key="canvasLocation" x="-30.434782608695656" y="-13.392857142857142"/>
         </view>
     </objects>
     <resources>
-        <image name="back" width="16" height="16"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

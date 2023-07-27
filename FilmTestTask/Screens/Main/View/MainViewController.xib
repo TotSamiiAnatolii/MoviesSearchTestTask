@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -26,18 +26,18 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChH-nC-HAM">
-                    <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                    <rect key="frame" x="0.0" y="91" width="390" height="44"/>
                     <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <items>
                         <navigationItem leftItemsSupplementBackButton="YES" largeTitleDisplayMode="never" id="uwd-hr-fPv">
                             <nil key="title"/>
                             <barButtonItem key="leftBarButtonItem" title="ппроп" springLoaded="YES" changesSelectionAsPrimaryAction="YES" id="WCU-iI-Cdh">
                                 <view key="customView" contentMode="scaleToFill" id="9xM-Vy-zzE">
-                                    <rect key="frame" x="20" y="5.5" width="178" height="33"/>
+                                    <rect key="frame" x="16" y="5.6666666666666679" width="178" height="33"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Фильмы" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INd-t7-Vmh">
@@ -66,7 +66,7 @@
                     </items>
                 </navigationBar>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="AUK-fT-nAx">
-                    <rect key="frame" x="0.0" y="92" width="414" height="770"/>
+                    <rect key="frame" x="0.0" y="135" width="390" height="675"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dU6-fv-ECv">
                         <size key="itemSize" width="128" height="128"/>
@@ -76,10 +76,10 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vfB-1w-f0r" userLabel="ErrorView">
-                    <rect key="frame" x="145" y="403.5" width="124" height="147"/>
+                    <rect key="frame" x="133" y="399" width="124" height="147"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error" translatesAutoresizingMaskIntoConstraints="NO" id="e9f-u3-qgB">
-                            <rect key="frame" x="15" y="0.0" width="94.5" height="82"/>
+                            <rect key="frame" x="14.666666666666657" y="0.0" width="94.666666666666671" height="82"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="82" id="5Sr-CD-MGX"/>
                                 <constraint firstAttribute="width" constant="94.5" id="x97-7O-ipJ"/>
@@ -109,10 +109,10 @@
                     </subviews>
                 </stackView>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="1aX-0K-ckC" userLabel="Paging Activity Indicator">
-                    <rect key="frame" x="197" y="751" width="20" height="20"/>
+                    <rect key="frame" x="185" y="699" width="20" height="20"/>
                 </activityIndicatorView>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ylU-f6-lih" userLabel="Main Activity Indicator">
-                    <rect key="frame" x="197" y="438" width="20" height="20"/>
+                    <rect key="frame" x="185" y="412" width="20" height="20"/>
                 </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -133,6 +133,7 @@
                 <constraint firstItem="ChH-nC-HAM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="qHi-1d-b7T"/>
                 <constraint firstItem="1aX-0K-ckC" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="qxD-tB-vD2"/>
             </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <point key="canvasLocation" x="123.18840579710145" y="-12.723214285714285"/>
         </view>
     </objects>

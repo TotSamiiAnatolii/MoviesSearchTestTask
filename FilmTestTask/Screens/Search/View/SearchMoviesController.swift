@@ -46,15 +46,28 @@ final class SearchMoviesController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = true
         prepareCollectionView()
         createDataSource()
+        configureNavigationBar()
     }
     
     private func prepareCollectionView() {
         collectionView.delegate = self
         collectionView.collectionViewLayout = myCompositionalLayout.setLayoutCollection()
         collectionView.register(UINib(nibName: MovieCell.identifire, bundle: nil), forCellWithReuseIdentifier: MovieCell.identifire)
+    }
+    
+    private func configureNavigationBar() {
+        guard let navigationController else {
+            return
+        }
+        
+        let tf = UITextField(frame: CGRect(x: 0, y: 0, width: navigationController.navigationBar.bounds.width, height: navigationController.navigationBar.bounds.height))
+        tf.borderStyle = .none
+        tf.placeholder = "Search"
+        navigationItem.titleView = tf
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", image: UIImage(named: "back"), target: nil, action: nil)
     }
     
     @IBAction func backButton(_ sender: Any) {

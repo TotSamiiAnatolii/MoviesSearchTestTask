@@ -49,9 +49,8 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = true
+        configureNavigationBar()
         prepareCollectionView()
-       
         pagingActivityIndicator.isHidden = true
         mainActivityIndicator.isHidden = true
         presenter.viewDidLoad()
@@ -65,6 +64,20 @@ final class MainViewController: UIViewController {
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 300, right: 0)
         collectionView.addSubview(refreshControl)
         refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+    }
+    
+    private func configureNavigationBar() {
+        guard let navigationController else {
+            return
+        }
+        
+        let tf = UILabel()
+        tf.text = "Фильмы"
+        tf.font = UIFont(name: "Roboto-SemiBold", size: 25)!
+      
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: tf)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "", image: UIImage(named: "search"), target: nil, action: nil)
     }
     
     @IBAction func searchButton(_ sender: Any) {

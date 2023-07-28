@@ -49,6 +49,8 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     
     private var router: RouterProtocol
     
+    private let mapper = Mapper()
+    
     init(networkService: NetworkServiceProtocol, router: RouterProtocol) {
         self.router = router
         self.networkService = networkService
@@ -60,14 +62,13 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     }
     
     func getListMovie(page: Int = 1) {
-        let maper = Maper()
         view?.noInternetAlertManagement(isHidden: true)
         networkService.getTopListMovies(page: page) { result in
             switch result {
             case .success(let success):
                 DispatchQueue.main.async {
                     self.pagingFile.pageCount = success.pagesCount
-                    self.stateView = .populated(maper.map(model: success.films))
+                    self.stateView = .populated(self.mapper.map(models: success.films))
                 }
             case .failure(let error):
                 DispatchQueue.main.async {

@@ -10,7 +10,6 @@
     <customFonts key="customFonts">
         <array key="Roboto.ttf">
             <string>Roboto-Regular</string>
-            <string>RobotoRoman-SemiBold</string>
         </array>
     </customFonts>
     <objects>
@@ -29,44 +28,8 @@
             <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChH-nC-HAM">
-                    <rect key="frame" x="0.0" y="91" width="390" height="44"/>
-                    <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <items>
-                        <navigationItem leftItemsSupplementBackButton="YES" largeTitleDisplayMode="never" id="uwd-hr-fPv">
-                            <nil key="title"/>
-                            <barButtonItem key="leftBarButtonItem" title="ппроп" springLoaded="YES" changesSelectionAsPrimaryAction="YES" id="WCU-iI-Cdh">
-                                <view key="customView" contentMode="scaleToFill" id="9xM-Vy-zzE">
-                                    <rect key="frame" x="16" y="5.6666666666666679" width="178" height="33"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Фильмы" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INd-t7-Vmh">
-                                            <rect key="frame" x="0.0" y="0.0" width="178" height="33"/>
-                                            <fontDescription key="fontDescription" name="RobotoRoman-SemiBold" family="Roboto" pointSize="25"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <rect key="contentStretch" x="0.050000000000000003" y="0.0" width="1" height="1"/>
-                                    <constraints>
-                                        <constraint firstItem="INd-t7-Vmh" firstAttribute="leading" secondItem="9xM-Vy-zzE" secondAttribute="leading" id="1tv-02-t5F"/>
-                                        <constraint firstItem="INd-t7-Vmh" firstAttribute="top" secondItem="9xM-Vy-zzE" secondAttribute="top" id="8ad-Qc-IuQ"/>
-                                        <constraint firstAttribute="trailing" secondItem="INd-t7-Vmh" secondAttribute="trailing" id="Sfb-Km-LC0"/>
-                                        <constraint firstAttribute="bottom" secondItem="INd-t7-Vmh" secondAttribute="bottom" id="vA0-kP-QeI"/>
-                                    </constraints>
-                                </view>
-                            </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" image="search" id="Nov-C6-UO2">
-                                <color key="tintColor" red="0.27058823529411763" green="0.3411764705882353" blue="0.63529411764705879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="searchButton:" destination="-1" id="y8d-oV-reX"/>
-                                </connections>
-                            </barButtonItem>
-                        </navigationItem>
-                    </items>
-                </navigationBar>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="AUK-fT-nAx">
-                    <rect key="frame" x="0.0" y="135" width="390" height="675"/>
+                    <rect key="frame" x="0.0" y="91" width="390" height="719"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dU6-fv-ECv">
                         <size key="itemSize" width="128" height="128"/>
@@ -76,7 +39,7 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vfB-1w-f0r" userLabel="ErrorView">
-                    <rect key="frame" x="133" y="399" width="124" height="147"/>
+                    <rect key="frame" x="133" y="377" width="124" height="147"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error" translatesAutoresizingMaskIntoConstraints="NO" id="e9f-u3-qgB">
                             <rect key="frame" x="14.666666666666657" y="0.0" width="94.666666666666671" height="82"/>
@@ -120,17 +83,13 @@
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="AUK-fT-nAx" secondAttribute="bottom" id="ABp-Xh-Ix6"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="1aX-0K-ckC" secondAttribute="bottom" constant="91" id="DSI-7Z-nv0"/>
-                <constraint firstItem="ChH-nC-HAM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Fbn-Kc-F3a"/>
                 <constraint firstItem="vfB-1w-f0r" firstAttribute="centerY" secondItem="AUK-fT-nAx" secondAttribute="centerY" id="MKd-ap-kgy"/>
-                <constraint firstItem="AUK-fT-nAx" firstAttribute="top" secondItem="ChH-nC-HAM" secondAttribute="bottom" id="NPg-4p-g5S"/>
-                <constraint firstItem="ChH-nC-HAM" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="YNA-t5-4cp"/>
-                <constraint firstItem="ChH-nC-HAM" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="a66-Sb-WvG"/>
+                <constraint firstItem="AUK-fT-nAx" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="NPg-4p-g5S"/>
                 <constraint firstItem="AUK-fT-nAx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ahG-o2-eNZ"/>
                 <constraint firstItem="ylU-f6-lih" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="djH-AP-j1O"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AUK-fT-nAx" secondAttribute="trailing" id="hTW-Nz-CoW"/>
                 <constraint firstItem="ylU-f6-lih" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="inx-PH-GyX"/>
                 <constraint firstItem="vfB-1w-f0r" firstAttribute="centerX" secondItem="AUK-fT-nAx" secondAttribute="centerX" id="oqo-69-bw3"/>
-                <constraint firstItem="ChH-nC-HAM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="qHi-1d-b7T"/>
                 <constraint firstItem="1aX-0K-ckC" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="qxD-tB-vD2"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
@@ -139,7 +98,6 @@
     </objects>
     <resources>
         <image name="error" width="96" height="83"/>
-        <image name="search" width="20" height="20"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -67,22 +67,18 @@ final class MainViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        guard let navigationController else {
-            return
-        }
-        
         let tf = UILabel()
         tf.text = "Фильмы"
-        tf.font = UIFont(name: "Roboto-SemiBold", size: 25)!
+        tf.font = UIFont.systemFont(ofSize: 26, weight: .semibold)
       
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: tf)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "", image: UIImage(named: "search"), target: nil, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "", image: UIImage(named: "search"), target: self, action: #selector(searhButton))
     }
     
-    @IBAction func searchButton(_ sender: Any) {
-        presenter.showSearchMovies()
-    }
+//    @IBAction func searchButton(_ sender: Any) {
+//        presenter.showSearchMovies()
+//    }
     
     @IBAction func repeatButton(_ sender: Any) {
         presenter.getListMovie()
@@ -91,6 +87,10 @@ final class MainViewController: UIViewController {
     @objc func refresh(_ sender:AnyObject) {
         listTopMovies.removeAll()
         presenter.getListMovie()
+    }
+    
+    @objc func searhButton() {
+        presenter.showSearchMovies()
     }
 }
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {

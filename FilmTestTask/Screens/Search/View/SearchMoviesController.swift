@@ -30,7 +30,7 @@ final class SearchMoviesController: UIViewController {
     
     private var foundMovies: [MovieCellModel] = []
     
-    @IBAction func search(_ sender: UITextField) {
+    @objc func search(_ sender: UITextField) {
         presenter.searchMovies(title: sender.text!)
     }
     
@@ -65,12 +65,13 @@ final class SearchMoviesController: UIViewController {
         let tf = UITextField(frame: CGRect(x: 0, y: 0, width: navigationController.navigationBar.bounds.width, height: navigationController.navigationBar.bounds.height))
         tf.borderStyle = .none
         tf.placeholder = "Search"
+        tf.addTarget(self, action: #selector(search), for: .allEditingEvents)
         navigationItem.titleView = tf
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", image: UIImage(named: "back"), target: nil, action: nil)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", image: UIImage(named: "back"), target: self, action: #selector(backButton))
     }
     
-    @IBAction func backButton(_ sender: Any) {
+    @objc func backButton() {
         presenter.popToRoot()
     }
     

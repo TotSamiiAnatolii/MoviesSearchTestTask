@@ -36,6 +36,8 @@ final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
         }
     }
     
+    private let mapper = Mapper()
+    
     init(networkService: NetworkServiceProtocol, router: RouterProtocol) {
         self.networkService = networkService
         self.router = router
@@ -50,12 +52,11 @@ final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
     }
     
     func searchMovies(title movie: String) {
-        let maper = Maper()
         networkService.searchMovie(title: movie) { result in
             switch result {
             case .success(let success):
                 DispatchQueue.main.async {
-                    self.stateView = .search(maper.map(model: success.films))
+                    self.stateView = .search(self.mapper.map(models: success.films))
                 }
             case .failure(let error):
                 DispatchQueue.main.async {

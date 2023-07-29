@@ -10,7 +10,7 @@ import UIKit
 var imageCashe = NSCache<AnyObject, AnyObject>()
 
 extension UIImageView {
-    
+
     func loadImage(urlString: String) {
         
         tag = urlString.hashValue
@@ -25,13 +25,12 @@ extension UIImageView {
         
         DispatchQueue.global(qos: .userInitiated).async{
             if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data),
-                   let resultImage = image.copy(newSize: CGSize(width: 60, height: 100)) {
+                if let image = UIImage(data: data) {
                     
                     DispatchQueue.main.async {
-                        imageCashe.setObject(resultImage, forKey: urlString as NSString)
+                        imageCashe.setObject(image, forKey: urlString as NSString)
                         if self.tag == urlString.hashValue {
-                            self.image = resultImage
+                            self.image = image
                         }
                     }
                 }

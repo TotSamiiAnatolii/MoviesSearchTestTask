@@ -26,7 +26,7 @@ final class Mapper: MapperProtocol {
     func map(model: Film) -> MovieCellModel {
         MovieCellModel(
             id: model.filmId,
-            poster: model.posterURLPreview ?? model.posterUrl,
+            poster: model.posterUrlPreview,
             movieTitle: model.nameRu,
             filmGenre: model.genres.first?.genre ?? "Error")
     }

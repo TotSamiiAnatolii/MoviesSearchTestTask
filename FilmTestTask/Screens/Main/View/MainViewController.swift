@@ -13,6 +13,8 @@ protocol MainMoviesListViewProtocol: AnyObject  {
     
     func failure()
     
+    func setViewState(stateView: StateViewModel)
+    
     func noInternetAlertManagement(isHidden: Bool)
     
     func controlActivityIndicator(indicator: LoadingIndicator)
@@ -35,6 +37,8 @@ final class MainViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     
     private let myCompositionalLayout = MyCompositionalLayout()
+    
+    private let mainTitle = "Фильмы"
     
     private var listTopMovies: [MovieCellModel] = []
     
@@ -67,19 +71,22 @@ final class MainViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        let tf = UILabel()
-        tf.text = "Фильмы"
-        tf.font = UIFont.systemFont(ofSize: 26, weight: .semibold)
-      
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: tf)
+        let titleLabel = UILabel()
+        titleLabel.text = mainTitle
+        titleLabel.font = Fonts.mainTitle
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "", image: UIImage(named: "search"), target: self, action: #selector(searhButton))
+        let searchButton = UIBarButtonItem(image: Images.search, landscapeImagePhone: Images.search, style: .done, target: self, action: #selector(searhButton))
+
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
+        navigationItem.rightBarButtonItem = searchButton
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.backgroundColor = .white
+        self.navigationItem.standardAppearance = appearance
+        self.navigationItem.scrollEdgeAppearance = appearance
+        self.navigationItem.compactAppearance = appearance
     }
-    
-//    @IBAction func searchButton(_ sender: Any) {
-//        presenter.showSearchMovies()
-//    }
-    
+
     @IBAction func repeatButton(_ sender: Any) {
         presenter.getListMovie()
     }
@@ -117,7 +124,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row == listTopMovies.count - 1 {
+        if indexPath.row == listTopMovies.count - 3 {
             presenter.supplement()
         }
     }
@@ -127,23 +134,10 @@ extension MainViewController: MainMoviesListViewProtocol {
     func controlActivityIndicator(indicator: LoadingIndicator) {
         switch indicator {
         case .main(let state):
-            switch state {
-            case .startAnimating:
-                mainActivityIndicator.isHidden = false
-                mainActivityIndicator.startAnimating()
-            case .stopAnimating:
-                mainActivityIndicator.isHidden = true
-                mainActivityIndicator.stopAnimating()
-            }
+            mainActivityIndicator.controlActivityIndicator(state: state)
+            
         case .paging(let state):
-            switch state {
-            case .startAnimating:
-                pagingActivityIndicator.isHidden = false
-                pagingActivityIndicator.startAnimating()
-            case .stopAnimating:
-                pagingActivityIndicator.isHidden = true
-                pagingActivityIndicator.stopAnimating()
-            }
+            pagingActivityIndicator.controlActivityIndicator(state: state)
         }
     }
 
@@ -160,5 +154,22 @@ extension MainViewController: MainMoviesListViewProtocol {
     
     func failure() {
         noInternetAlertManagement(isHidden: false)
+    }
+    
+    func setViewState(stateView: StateViewModel) {
+        switch stateView {
+        case .loading:
+            controlActivityIndicator(indicator: .main(.startAnimating))
+        case .paging:
+            controlActivityIndicator(indicator: .paging(.startAnimating))
+        case .populated(let movie):
+            success(model: movie)
+            controlActivityIndicator(indicator: .main(.stopAnimating))
+            controlActivityIndicator(indicator: .paging(.stopAnimating))
+        case .empty:
+            success(model: [])
+        case .error(_):
+            failure()
+        }
     }
 }

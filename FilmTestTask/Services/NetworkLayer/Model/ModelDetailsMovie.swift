@@ -77,13 +77,3 @@ struct DetailsMovie: Codable {
 //        case startYear, endYear, serial, shortFilm, completed
     }
 }
-
-//// MARK: - Country
-//struct Country: Codable {
-//    let country: String
-//}
-//
-//// MARK: - Genre
-//struct Genre: Codable {
-//    let genre: String
-//}

@@ -30,6 +30,8 @@ final class SearchMoviesController: UIViewController {
     
     private var foundMovies: [MovieCellModel] = []
     
+    private let placeholder = "Search"
+    
     @objc func search(_ sender: UITextField) {
         presenter.searchMovies(title: sender.text!)
     }
@@ -61,14 +63,16 @@ final class SearchMoviesController: UIViewController {
         guard let navigationController else {
             return
         }
+        let heightNavBar = navigationController.navigationBar.bounds.height
+        let widthNavBar = navigationController.navigationBar.bounds.width
         
-        let tf = UITextField(frame: CGRect(x: 0, y: 0, width: navigationController.navigationBar.bounds.width, height: navigationController.navigationBar.bounds.height))
-        tf.borderStyle = .none
-        tf.placeholder = "Search"
-        tf.addTarget(self, action: #selector(search), for: .allEditingEvents)
-        navigationItem.titleView = tf
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", image: UIImage(named: "back"), target: self, action: #selector(backButton))
+        let searchBar = UITextField(frame: CGRect(x: 0, y: 0, width: widthNavBar, height: heightNavBar))
+        searchBar.borderStyle = .none
+        searchBar.placeholder = placeholder
+        searchBar.addTarget(self, action: #selector(search), for: .allEditingEvents)
+        navigationItem.titleView = searchBar
+        let backButton = UIBarButtonItem(image: Images.backButton, landscapeImagePhone: Images.search, style: .done, target: self, action: #selector(backButton))
+        navigationItem.leftBarButtonItem = backButton
     }
     
     @objc func backButton() {

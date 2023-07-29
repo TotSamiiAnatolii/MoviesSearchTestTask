@@ -22,8 +22,6 @@ protocol MainMoviesListPresenterProtocol: AnyObject {
     func viewDidLoad()
     
     func supplement()
-    
-    func setViewState()
 }
 extension MainMoviesListPresenterProtocol {
     func getListMovie() {
@@ -43,7 +41,7 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     
     private var stateView: StateViewModel = .loading  {
         didSet {
-            setViewState()
+            view?.setViewState(stateView: stateView)
         }
     }
     
@@ -57,8 +55,8 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     }
     
     func viewDidLoad() {
-        setViewState()
-        getListMovie(page: pagingFile.nextPage())
+        view?.setViewState(stateView: stateView)
+        getListMovie()
     }
     
     func getListMovie(page: Int = 1) {
@@ -89,22 +87,5 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     func supplement() {
         stateView = .paging
         pagingFile.hasMorePages ? getListMovie(page: pagingFile.nextPage()) : view?.controlActivityIndicator(indicator: .paging(.stopAnimating))
-    }
-    
-    func setViewState() {
-        switch stateView {
-        case .loading:
-            view?.controlActivityIndicator(indicator: .main(.startAnimating))
-        case .paging:
-            view?.controlActivityIndicator(indicator: .paging(.startAnimating))
-        case .populated(let movie):
-            view?.success(model: movie)
-            view?.controlActivityIndicator(indicator: .main(.stopAnimating))
-            view?.controlActivityIndicator(indicator: .paging(.stopAnimating))
-        case .empty:
-            view?.success(model: [])
-        case .error(_):
-            view?.failure()
-        }
     }
 }

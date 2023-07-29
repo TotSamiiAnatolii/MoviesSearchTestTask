@@ -2,12 +2,13 @@
 //  UIImage+.swift
 //  FilmTestTask
 //
-//  Created by APPLE on 16.07.2023.
+//  Created by APPLE on 29.07.2023.
 //
 
 import UIKit
 
-public extension UIImage {
+extension UIImage {
+    
     func copy(newSize: CGSize, retina: Bool = true) -> UIImage? {
         
         UIGraphicsBeginImageContextWithOptions(

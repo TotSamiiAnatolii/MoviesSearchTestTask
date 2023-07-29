@@ -23,7 +23,7 @@ struct Film: Codable {
     var rating: String
     var ratingVoteCount: Int
     var posterUrl: String
-    var posterURLPreview: String?
+    var posterUrlPreview: String
 }
 
 struct Countries: Codable {

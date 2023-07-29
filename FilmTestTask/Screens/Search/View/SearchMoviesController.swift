@@ -70,9 +70,8 @@ final class SearchMoviesController: UIViewController {
         searchBar.borderStyle = .none
         searchBar.placeholder = placeholder
         searchBar.addTarget(self, action: #selector(search), for: .allEditingEvents)
-        navigationItem.titleView = searchBar
         let backButton = UIBarButtonItem(image: Images.backButton, landscapeImagePhone: Images.search, style: .done, target: self, action: #selector(backButton))
-        navigationItem.leftBarButtonItem = backButton
+        self.setupNavBar(leftItem: backButton, rightItem: nil, titleView: searchBar)
     }
     
     @objc func backButton() {

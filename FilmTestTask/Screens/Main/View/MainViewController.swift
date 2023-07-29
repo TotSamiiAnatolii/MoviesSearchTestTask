@@ -77,14 +77,7 @@ final class MainViewController: UIViewController {
         
         let searchButton = UIBarButtonItem(image: Images.search, landscapeImagePhone: Images.search, style: .done, target: self, action: #selector(searhButton))
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
-        navigationItem.rightBarButtonItem = searchButton
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
-        appearance.backgroundColor = .white
-        self.navigationItem.standardAppearance = appearance
-        self.navigationItem.scrollEdgeAppearance = appearance
-        self.navigationItem.compactAppearance = appearance
+        self.setupNavBar(leftItem: UIBarButtonItem(customView: titleLabel), rightItem: searchButton, titleView: nil)
     }
 
     @IBAction func repeatButton(_ sender: Any) {

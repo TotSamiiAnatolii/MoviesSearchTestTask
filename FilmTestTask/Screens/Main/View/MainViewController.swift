@@ -75,8 +75,8 @@ final class MainViewController: UIViewController {
         titleLabel.text = mainTitle
         titleLabel.font = Fonts.mainTitle
         
-        let searchButton = UIBarButtonItem(image: Images.search, landscapeImagePhone: Images.search, style: .done, target: self, action: #selector(searhButton))
-
+        let searchButton = UIBarButtonItem(image: Images.search, landscapeImagePhone: Images.search, style: .plain, target: self, action: #selector(searhButton))
+        
         self.setupNavBar(leftItem: UIBarButtonItem(customView: titleLabel), rightItem: searchButton, titleView: nil)
     }
 

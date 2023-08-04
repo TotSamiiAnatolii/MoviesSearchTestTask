@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -16,6 +17,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchMoviesController" customModule="FilmTestTask" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="TY9-nq-Sin" id="YNi-Bd-9tx"/>
+                <outlet property="mainActivityIndicator" destination="jGF-sx-ij3" id="meW-sl-wng"/>
                 <outlet property="notFound" destination="ica-kx-urm" id="caN-Rv-9Fe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -57,13 +59,18 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="jGF-sx-ij3" userLabel="mainActivityIndicator">
+                    <rect key="frame" x="177.66666666666666" y="396" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="TY9-nq-Sin" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="FFo-cN-MeZ"/>
                 <constraint firstItem="ica-kx-urm" firstAttribute="centerX" secondItem="TY9-nq-Sin" secondAttribute="centerX" id="KwC-rL-HZB"/>
+                <constraint firstItem="jGF-sx-ij3" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Q45-9o-ZYQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="TY9-nq-Sin" secondAttribute="bottom" id="RVn-Y1-jGY"/>
+                <constraint firstItem="jGF-sx-ij3" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="lMF-HL-WcX"/>
                 <constraint firstItem="TY9-nq-Sin" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="nPA-NL-MQc"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TY9-nq-Sin" secondAttribute="trailing" id="v0F-3B-W6R"/>
                 <constraint firstItem="ica-kx-urm" firstAttribute="centerY" secondItem="TY9-nq-Sin" secondAttribute="centerY" id="z4O-XD-6Io"/>

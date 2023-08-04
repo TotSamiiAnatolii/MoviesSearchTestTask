@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -29,7 +30,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="AUK-fT-nAx">
-                    <rect key="frame" x="0.0" y="91" width="390" height="719"/>
+                    <rect key="frame" x="0.0" y="44" width="390" height="800"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dU6-fv-ECv">
                         <size key="itemSize" width="128" height="128"/>
@@ -39,7 +40,7 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vfB-1w-f0r" userLabel="ErrorView">
-                    <rect key="frame" x="133" y="377" width="124" height="147"/>
+                    <rect key="frame" x="133" y="370.66666666666669" width="124" height="147.00000000000006"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="error" translatesAutoresizingMaskIntoConstraints="NO" id="e9f-u3-qgB">
                             <rect key="frame" x="14.666666666666657" y="0.0" width="94.666666666666671" height="82"/>
@@ -72,7 +73,7 @@
                     </subviews>
                 </stackView>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="1aX-0K-ckC" userLabel="Paging Activity Indicator">
-                    <rect key="frame" x="185" y="699" width="20" height="20"/>
+                    <rect key="frame" x="185" y="733" width="20" height="20"/>
                 </activityIndicatorView>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ylU-f6-lih" userLabel="Main Activity Indicator">
                     <rect key="frame" x="185" y="412" width="20" height="20"/>

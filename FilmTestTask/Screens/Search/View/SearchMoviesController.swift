@@ -14,6 +14,8 @@ protocol SearchMoviesViewProtocol: AnyObject {
     func failure()
     
     func controlViewNotFound(isHidden: Bool)
+    
+    func controlActivityIndicator(indicator: LoadingIndicator)
 }
 
 final class SearchMoviesController: UIViewController {
@@ -26,20 +28,16 @@ final class SearchMoviesController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var mainActivityIndicator: UIActivityIndicatorView!
     private var dataSource: UICollectionViewDiffableDataSource<SectionType, AnyHashable>?
     
     private var foundMovies: [MovieCellModel] = []
     
     private let placeholder = "Search"
     
-    @objc func search(_ sender: UITextField) {
-        presenter.searchMovies(title: sender.text!)
-    }
-    
     init(presenter: SearchMoviesPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: "SearchMoviesController", bundle: nil)
-        
     }
     
     required init?(coder: NSCoder) {
@@ -51,6 +49,7 @@ final class SearchMoviesController: UIViewController {
         prepareCollectionView()
         createDataSource()
         configureNavigationBar()
+        mainActivityIndicator.isHidden = true
     }
     
     private func prepareCollectionView() {
@@ -70,7 +69,9 @@ final class SearchMoviesController: UIViewController {
         searchBar.borderStyle = .none
         searchBar.placeholder = placeholder
         searchBar.addTarget(self, action: #selector(search), for: .allEditingEvents)
+        
         let backButton = UIBarButtonItem(image: Images.backButton, landscapeImagePhone: Images.search, style: .done, target: self, action: #selector(backButton))
+        
         self.setupNavBar(leftItem: backButton, rightItem: nil, titleView: searchBar)
     }
     
@@ -104,21 +105,35 @@ final class SearchMoviesController: UIViewController {
         snapshot.appendItems(foundMovies, toSection: .movie)
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
+    
+    @objc func search(_ sender: UITextField) {
+        presenter.searchMovies(title: sender.text!)
+    }
 }
 extension SearchMoviesController: SearchMoviesViewProtocol {
+    func controlActivityIndicator(indicator: LoadingIndicator) {
+        switch indicator {
+        case .main(let state):
+            mainActivityIndicator.controlActivityIndicator(state: state)
+        default:
+            break
+        }
+    }
+    
     func controlViewNotFound(isHidden: Bool) {
         notFound.isHidden = isHidden
     }
     
-    
     func success(model: [MovieCellModel]) {
+        foundMovies.removeAll()
+        print(model.count)
         foundMovies = model
         reloadData(array: model)
     }
     
     func failure() {
         foundMovies.removeAll()
-        collectionView.reloadData()
+        reloadData(array: [])
     }
 }
 extension SearchMoviesController: UICollectionViewDelegate {

@@ -73,9 +73,11 @@ final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
     func setViewState() {
         switch stateView {
         case .loading:
-            view?.controlViewNotFound(isHidden: false)
-        case .search(let movie):
             view?.controlViewNotFound(isHidden: true)
+            view?.controlActivityIndicator(indicator: .main(.startAnimating))
+        case .search(let movie):
+            view?.controlActivityIndicator(indicator: .main(.stopAnimating))
+//            view?.controlViewNotFound(isHidden: true)
             view?.success(model: movie)
         case .notFound:
             view?.controlViewNotFound(isHidden: false)

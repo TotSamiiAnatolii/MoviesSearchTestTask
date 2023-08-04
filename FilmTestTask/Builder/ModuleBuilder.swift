@@ -8,8 +8,11 @@
 import UIKit
 
 protocol AssemblyBuilderProtocol {
+    
     func createMainMoviesList(router: RouterProtocol) -> UIViewController
+    
     func createSearchMovies(router: RouterProtocol) -> UIViewController
+    
     func createDetailMovie(id: Int, router: RouterProtocol) -> UIViewController
 }
 

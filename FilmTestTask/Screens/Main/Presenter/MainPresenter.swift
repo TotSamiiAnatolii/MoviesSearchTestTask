@@ -11,7 +11,7 @@ protocol MainMoviesListPresenterProtocol: AnyObject {
     
     init(networkService: NetworkServiceProtocol, router: RouterProtocol)
     
-    var startNumberPagin: Int {get}
+    var startNumberPagin: Int { get }
     
     func getListMovie(page: Int)
     

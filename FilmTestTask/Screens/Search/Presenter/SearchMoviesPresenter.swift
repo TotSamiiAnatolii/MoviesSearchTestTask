@@ -77,7 +77,7 @@ final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
             view?.controlActivityIndicator(indicator: .main(.startAnimating))
         case .search(let movie):
             view?.controlActivityIndicator(indicator: .main(.stopAnimating))
-//            view?.controlViewNotFound(isHidden: true)
+            view?.controlViewNotFound(isHidden: true)
             view?.success(model: movie)
         case .notFound:
             view?.controlViewNotFound(isHidden: false)

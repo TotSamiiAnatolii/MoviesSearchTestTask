@@ -29,6 +29,7 @@ final class SearchMoviesController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var mainActivityIndicator: UIActivityIndicatorView!
+    
     private var dataSource: UICollectionViewDiffableDataSource<SectionType, AnyHashable>?
     
     private var foundMovies: [MovieCellModel] = []
@@ -111,6 +112,7 @@ final class SearchMoviesController: UIViewController {
     }
 }
 extension SearchMoviesController: SearchMoviesViewProtocol {
+    
     func controlActivityIndicator(indicator: LoadingIndicator) {
         switch indicator {
         case .main(let state):
@@ -126,7 +128,6 @@ extension SearchMoviesController: SearchMoviesViewProtocol {
     
     func success(model: [MovieCellModel]) {
         foundMovies.removeAll()
-        print(model.count)
         foundMovies = model
         reloadData(array: model)
     }

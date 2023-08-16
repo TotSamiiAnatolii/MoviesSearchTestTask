@@ -38,7 +38,6 @@ final class Router: RouterProtocol {
     
     func showMovie(id: Int) {
         let detailMovieVC = assemblyBuilder.createDetailMovie(id: id, router: self)
-        print(navigationController.viewControllers.count)
         navigationController.pushViewController(detailMovieVC, animated: true)
     }
     

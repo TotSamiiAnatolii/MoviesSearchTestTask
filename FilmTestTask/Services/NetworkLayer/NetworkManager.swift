@@ -14,9 +14,7 @@ protocol NetworkServiceProtocol: AnyObject {
     func getDetailMovie(id: Int, completion: @escaping((Result<DetailsMovie, Error>) -> Void))
     
     func searchMovie(title: String, completion: @escaping((Result<SearchMovie, Error>) -> Void))
-    
-    func getReleases(year: Int, month: String, page: Int, completion: @escaping((Result<ReleaseMovie, Error>) -> Void))
-    
+        
     func getPhoto(url: String, completion: @escaping((Result<Data, Error>) -> Void))
 }
 
@@ -72,29 +70,7 @@ final class NetworkManager: NetworkServiceProtocol {
         request.allHTTPHeaderFields = ["X-API-KEY": ApiBuilder.token.rawValue]
         fetchModels(from: request, in: completion)
     }
-    
-    func getReleases(year: Int, month: String, page: Int, completion: @escaping((Result<ReleaseMovie, Error>) -> Void))  {
-        
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = "kinopoiskapiunofficial.tech"
-        components.path = "/api/v2.1/films/releases"
-        
-        components.queryItems = [
-            URLQueryItem(name: "year", value: "\(year)"),
-            URLQueryItem(name: "month", value: month.uppercased()),
-            URLQueryItem(name: "page", value: "\(page)")
-        ]
-        
-        guard let url = components.url else {
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.allHTTPHeaderFields = ["X-API-KEY": ApiBuilder.token.rawValue]
-        fetchModels(from: request, in: completion)
-    }
-    
+
     private func fetchModels<T: Decodable>(from url: URLRequest, in completion: @escaping ((Result<T, Error>) -> Void)) {
         
         URLSession.shared.dataTask(with: url) { data, _, error in

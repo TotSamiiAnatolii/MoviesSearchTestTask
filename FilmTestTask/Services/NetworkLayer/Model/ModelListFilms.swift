@@ -25,7 +25,8 @@ struct Release: Codable {
     let rating: Double
     let ratingVoteCount: Int
     let expectationsRating: Double
-    let expectationsRatingVoteCount, duration: Int
+    let expectationsRatingVoteCount: Double
+    let duration: Int
     let releaseDate: String
 
     enum CodingKeys: String, CodingKey {

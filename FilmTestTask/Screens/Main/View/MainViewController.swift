@@ -117,9 +117,10 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row == listTopMovies.count - 3 {
+        if indexPath.row == listTopMovies.count - 8 {
             presenter.supplement()
         }
+       
     }
 }
 extension MainViewController: MainMoviesListViewProtocol {
@@ -140,7 +141,6 @@ extension MainViewController: MainMoviesListViewProtocol {
 
     func success(model: [MovieCellModel]) {
         listTopMovies.append(contentsOf: model)
-        refreshControl.endRefreshing()
         noInternetAlertManagement(isHidden: true)
         collectionView.reloadData()
     }

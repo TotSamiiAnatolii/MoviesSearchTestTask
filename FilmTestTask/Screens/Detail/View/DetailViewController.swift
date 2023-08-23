@@ -71,7 +71,7 @@ extension DetailViewController: DetailMovieViewProtocol {
     }
     
     func configureView(model: DetailModel) {
-        poster.loadImage(urlString: model.poster)
+        poster.loadImage(urlString: model.poster, placeholder: UIImage())
         movieTitle.text = model.movieTitle
         filmDescription.text = model.description
         genre.text = model.movieGenre

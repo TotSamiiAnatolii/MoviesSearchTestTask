@@ -44,7 +44,7 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
             view?.setViewState(stateView: stateView)
         }
     }
-    
+   
     private var router: RouterProtocol
     
     private let mapper = Mapper()
@@ -64,6 +64,12 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
         networkService.getTopListMovies(page: page) { result in
             switch result {
             case .success(let success):
+                let poster = success.films.map{URL(string: $0.posterUrlPreview)}
+                
+                poster.forEach { film in
+                    ImageDownloader.shared.warmCache(with: film!)
+                }
+                
                 DispatchQueue.main.async {
                     self.pagingFile.pageCount = success.pagesCount
                     self.stateView = .populated(self.mapper.map(models: success.films))

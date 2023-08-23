@@ -9,69 +9,12 @@ import UIKit
 
 protocol NetworkServiceProtocol: AnyObject {
     
-    func getTopListMovies(page: Int, completion: @escaping((Result<ModelTopListMovies, Error>) -> Void))
-    
-    func getDetailMovie(id: Int, completion: @escaping((Result<DetailsMovie, Error>) -> Void))
-    
-    func searchMovie(title: String, completion: @escaping((Result<SearchMovie, Error>) -> Void))
-        
-    func getPhoto(url: String, completion: @escaping((Result<Data, Error>) -> Void))
+    func fetchModels<T: Decodable>(from url: URLRequest, in completion: @escaping ((Result<T, Error>) -> Void))
 }
 
 final class NetworkManager: NetworkServiceProtocol {
- 
-    func getPhoto(url: String, completion: @escaping ((Result<Data, Error>) -> Void)) {
-        guard let url = URL(string: url) else {
-            return
-        }
-        DispatchQueue.global().async {
-            let task = URLSession.shared.dataTask(with: url) { data, response, error in
-                
-                if let error = error {
-                    completion(.failure(error))
-                    print(error.localizedDescription)
-                }
-                guard let data = data else { return }
-                completion(.success(data))
-            }
-            task.resume()
-        }
-    }
     
-    
-    func getTopListMovies(page: Int, completion: @escaping((Result<ModelTopListMovies, Error>) -> Void)) {
-
-        guard let url = ApiBuilder.topList(page: page) else {
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.allHTTPHeaderFields = ["X-API-KEY": ApiBuilder.token.rawValue]
-        fetchModels(from: request, in: completion)
-    }
-    
-    func getDetailMovie(id: Int, completion: @escaping ((Result<DetailsMovie, Error>) -> Void)) {
-
-        guard let url = ApiBuilder.detailMovie(id: id) else {
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.allHTTPHeaderFields = ["X-API-KEY": ApiBuilder.token.rawValue]
-        fetchModels(from: request, in: completion)
-    }
-    
-    func searchMovie(title: String, completion: @escaping ((Result<SearchMovie, Error>) -> Void)) {
-        guard let url = ApiBuilder.searchMovie(title: title) else {
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.allHTTPHeaderFields = ["X-API-KEY": ApiBuilder.token.rawValue]
-        fetchModels(from: request, in: completion)
-    }
-
-    private func fetchModels<T: Decodable>(from url: URLRequest, in completion: @escaping ((Result<T, Error>) -> Void)) {
+    func fetchModels<T: Decodable>(from url: URLRequest, in completion: @escaping ((Result<T, Error>) -> Void)) {
         
         URLSession.shared.dataTask(with: url) { data, _, error in
             

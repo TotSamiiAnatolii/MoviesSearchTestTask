@@ -9,7 +9,7 @@ import UIKit
 
 protocol MainMoviesListPresenterProtocol: AnyObject {
     
-    init(networkService: NetworkServiceProtocol, router: RouterProtocol)
+    init(filmAPIManager: FilmManagerProtocol, router: RouterProtocol)
     
     var startNumberPagin: Int { get }
     
@@ -33,7 +33,7 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     
     weak var view: MainMoviesListViewProtocol?
     
-    private let networkService: NetworkServiceProtocol
+    private let filmAPIManager: FilmManagerProtocol
     
     internal let startNumberPagin = 1
     
@@ -49,9 +49,9 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     
     private let mapper = Mapper()
     
-    init(networkService: NetworkServiceProtocol, router: RouterProtocol) {
+    init(filmAPIManager: FilmManagerProtocol, router: RouterProtocol) {
         self.router = router
-        self.networkService = networkService
+        self.filmAPIManager = filmAPIManager
     }
     
     func viewDidLoad() {
@@ -61,7 +61,7 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     
     func getListMovie(page: Int = 1) {
         view?.noInternetAlertManagement(isHidden: true)
-        networkService.getTopListMovies(page: page) { result in
+        filmAPIManager.getTopListMovies(page: page) { result in
             switch result {
             case .success(let success):
                 let poster = success.films.map{URL(string: $0.posterUrlPreview)}

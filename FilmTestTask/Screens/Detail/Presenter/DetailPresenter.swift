@@ -9,7 +9,7 @@ import UIKit
 
 protocol DetailMoviePresenterProtocol {
     
-    init(id: Int, networkService: NetworkServiceProtocol, router: RouterProtocol)
+    init(id: Int, filmAPIManager: FilmManagerProtocol, router: RouterProtocol)
     
     func getDeatilMovie(id: Int)
     
@@ -20,19 +20,19 @@ final class DetailMoviePresenter: DetailMoviePresenterProtocol {
     
     weak var view: DetailMovieViewProtocol?
     
-    private let networkService: NetworkServiceProtocol
+    private let filmAPIManager: FilmManagerProtocol
     
     private var router: RouterProtocol
     
-    init(id: Int, networkService: NetworkServiceProtocol, router: RouterProtocol) {
-        self.networkService = networkService
+    init(id: Int, filmAPIManager: FilmManagerProtocol, router: RouterProtocol) {
+        self.filmAPIManager = filmAPIManager
         self.router = router
         getDeatilMovie(id: id)
     }
     
     func getDeatilMovie(id: Int) {
         
-        networkService.getDetailMovie(id: id) { result in
+        filmAPIManager.getDetailMovie(id: id) { result in
             switch result {
             case .success(let success):
                 

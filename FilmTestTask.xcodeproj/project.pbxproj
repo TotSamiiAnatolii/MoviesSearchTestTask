@@ -10,6 +10,7 @@
 		187B3EB72A38EB0E00947C6B /* SearchMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187B3EB62A38EB0E00947C6B /* SearchMovie.swift */; };
 		187FFE912A4F4765000DC023 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187FFE902A4F4765000DC023 /* UIImageView+.swift */; };
 		188388732A96723000E970C3 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188388722A96723000E970C3 /* ImageDownloader.swift */; };
+		188388752A96801900E970C3 /* FilmAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188388742A96801900E970C3 /* FilmAPIManager.swift */; };
 		188A51F92A2E13DB00A89679 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188A51F82A2E13DB00A89679 /* AppDelegate.swift */; };
 		188A51FB2A2E13DB00A89679 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188A51FA2A2E13DB00A89679 /* SceneDelegate.swift */; };
 		188A52022A2E13F000A89679 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188A52012A2E13F000A89679 /* Assets.xcassets */; };
@@ -76,6 +77,7 @@
 		187B3EB62A38EB0E00947C6B /* SearchMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovie.swift; sourceTree = "<group>"; };
 		187FFE902A4F4765000DC023 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		188388722A96723000E970C3 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		188388742A96801900E970C3 /* FilmAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmAPIManager.swift; sourceTree = "<group>"; };
 		188A51F52A2E13DB00A89679 /* FilmTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilmTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188A51F82A2E13DB00A89679 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		188A51FA2A2E13DB00A89679 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 		18A3027B2A2E19150076D94B /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
+				188388742A96801900E970C3 /* FilmAPIManager.swift */,
 				18A3027C2A2E19640076D94B /* NetworkManager.swift */,
 				189091B72A4E069600B04598 /* APIBuilder.swift */,
 				18A302872A2E215D0076D94B /* Model */,
@@ -609,6 +612,7 @@
 				189091B62A4DFF1000B04598 /* ModelFilmSearch.swift in Sources */,
 				188A52332A2E157500A89679 /* MainViewController.swift in Sources */,
 				188D17502A36051100E0BFB2 /* ModelListFilms.swift in Sources */,
+				188388752A96801900E970C3 /* FilmAPIManager.swift in Sources */,
 				188A51F92A2E13DB00A89679 /* AppDelegate.swift in Sources */,
 				188D0BB92A7571F000D714B0 /* Images.swift in Sources */,
 				18A302822A2E1E330076D94B /* Router.swift in Sources */,

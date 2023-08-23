@@ -9,7 +9,7 @@ import UIKit
 
 protocol SearchMoviesPresenterProtocol {
     
-    init(networkService: NetworkServiceProtocol, router: RouterProtocol)
+    init(filmAPIManager: FilmManagerProtocol, router: RouterProtocol)
     
     func showDetailMovie(id: Int)
     
@@ -26,7 +26,7 @@ final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
     
     weak var view: SearchMoviesViewProtocol?
     
-    private let networkService: NetworkServiceProtocol
+    private let filmAPIManager: FilmManagerProtocol
     
     private var router: RouterProtocol
     
@@ -38,8 +38,8 @@ final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
     
     private let mapper = Mapper()
     
-    init(networkService: NetworkServiceProtocol, router: RouterProtocol) {
-        self.networkService = networkService
+    init(filmAPIManager: FilmManagerProtocol, router: RouterProtocol) {
+        self.filmAPIManager = filmAPIManager
         self.router = router
     }
     
@@ -52,7 +52,7 @@ final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
     }
     
     func searchMovies(title movie: String) {
-        networkService.searchMovie(title: movie) { result in
+        filmAPIManager.searchMovie(title: movie) { result in
             switch result {
             case .success(let success):
                 DispatchQueue.main.async {

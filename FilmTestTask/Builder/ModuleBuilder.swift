@@ -18,28 +18,28 @@ protocol AssemblyBuilderProtocol {
 
 final class ModuleBuilder: AssemblyBuilderProtocol {
     
-    let networkService: NetworkManager
+    let filmAPIManager: FilmManagerProtocol
     
-    init(networkService: NetworkManager) {
-        self.networkService = networkService
+    init(filmManager: FilmManagerProtocol) {
+        self.filmAPIManager = filmManager
     }
     
     func createMainMoviesList(router: RouterProtocol) -> UIViewController {
-        let presenter = MainMoviesListPresenter(networkService: networkService, router: router)
+        let presenter = MainMoviesListPresenter(filmAPIManager: filmAPIManager, router: router)
         let view = MainViewController(presenter: presenter)
         presenter.view = view
         return view
     }
     
     func createDetailMovie(id: Int, router: RouterProtocol) -> UIViewController {
-        let presenter = DetailMoviePresenter(id: id, networkService: networkService, router: router)
+        let presenter = DetailMoviePresenter(id: id, filmAPIManager: filmAPIManager, router: router)
         let view = DetailViewController(presenter: presenter)
         presenter.view = view
         return view
     }
     
     func createSearchMovies(router: RouterProtocol) -> UIViewController {
-        let presenter = SearchMoviesPresenter(networkService: networkService, router: router)
+        let presenter = SearchMoviesPresenter(filmAPIManager: filmAPIManager, router: router)
         let view = SearchMoviesController(presenter: presenter)
         presenter.view = view
         return view

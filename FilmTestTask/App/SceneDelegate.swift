@@ -18,7 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         let navigationController = UINavigationController()
-        let assmblyBuilder = ModuleBuilder(networkService: NetworkManager())
+        let networkService = NetworkManager()
+        let assmblyBuilder = ModuleBuilder(filmManager: FilmAPIManager(networkManager: networkService))
         let router = Router(navigationController: navigationController, assemblyBuilder: assmblyBuilder)
         router.initialViewController()
         window?.rootViewController = navigationController

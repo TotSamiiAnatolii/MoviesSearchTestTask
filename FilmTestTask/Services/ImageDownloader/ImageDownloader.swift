@@ -7,11 +7,6 @@
 
 import UIKit
 
-enum ImageResizes {
-    case poster
-    case full
-}
-
 protocol ImageDownLoaderProtocol {
     
     func getData(for url: URL, completion: @escaping (Result<Data, Error>) -> Void)

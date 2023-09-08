@@ -21,6 +21,12 @@ final class MovieCell: UICollectionViewCell {
         setupShadowCell()
         setupCorenerRadiusCell()
     }
+    
+    override var isHighlighted: Bool {
+        didSet {
+            isHighlighted ? touchDown() : touchUp()
+        }
+    }
 
     @IBOutlet weak var poster: UIImageView!
     
@@ -49,6 +55,27 @@ final class MovieCell: UICollectionViewCell {
         let radius: CGFloat = 20
         contentView.layer.cornerRadius = radius
         contentView.clipsToBounds = false
+    }
+    
+    private func touchDown() {
+        let scaleX = 0.98
+        let scaleY = 0.98
+        
+        transform = CGAffineTransform(scaleX: scaleX, y: scaleY)
+    }
+    
+    private func  touchUp() {
+        let scaleX = 1.0
+        let scaleY = 1.0
+        
+        UIView.animateKeyframes(withDuration: 0.4,
+                                delay: 0,
+                                options: [.beginFromCurrentState,
+                                          .allowUserInteraction],
+                                animations: {
+            
+            self.transform = CGAffineTransform(scaleX: scaleX, y: scaleY)
+        })
     }
 }
 extension MovieCell: ConfigureView {

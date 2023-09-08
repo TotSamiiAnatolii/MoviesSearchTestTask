@@ -67,7 +67,8 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
                 let poster = success.films.map{URL(string: $0.posterUrlPreview)}
                 
                 poster.forEach { film in
-                    ImageDownloader.shared.warmCache(with: film!)
+                    guard let film = film else { return }
+                    ImageDownloader.shared.warmCache(with: film)
                 }
                 
                 DispatchQueue.main.async {

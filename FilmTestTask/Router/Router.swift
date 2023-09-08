@@ -18,6 +18,7 @@ protocol RouterProtocol: RouterMain {
     func showMovie(id: Int)
     func showSearchMovies()
     func popToRoot()
+    func alert(title: String, message: String, btnTitle: String, action: @escaping (() -> Void))
 }
 
 final class Router: RouterProtocol {
@@ -48,5 +49,14 @@ final class Router: RouterProtocol {
     
     func popToRoot() {
         navigationController.popViewController(animated: true)
+    }
+    
+    func alert(title: String, message: String, btnTitle: String, action: @escaping (() -> Void)) {
+        let alertController = assemblyBuilder.createAlert(
+            title: title,
+            message: message,
+            btnTitle: btnTitle,
+            action: action)
+        navigationController.present(alertController, animated: true)
     }
 }

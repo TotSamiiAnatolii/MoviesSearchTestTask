@@ -147,6 +147,7 @@ extension MainViewController: MainMoviesListViewProtocol {
     
     func failure() {
         noInternetAlertManagement(isHidden: false)
+        controlActivityIndicator(indicator: .main(.stopAnimating))
     }
     
     func setViewState(stateView: StateViewModel) {

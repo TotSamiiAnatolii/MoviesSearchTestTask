@@ -18,7 +18,7 @@ protocol DetailMovieViewProtocol: AnyObject {
 
 final class DetailViewController: UIViewController {
     
-    var presenter: DetailMoviePresenterProtocol
+    private var presenter: DetailMoviePresenterProtocol
     
     @IBOutlet weak var poster: UIImageView!
     
@@ -31,6 +31,8 @@ final class DetailViewController: UIViewController {
     @IBOutlet weak var country: UILabel!
     
     @IBOutlet weak var year: UILabel!
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     init(presenter: DetailMoviePresenterProtocol) {
         self.presenter = presenter

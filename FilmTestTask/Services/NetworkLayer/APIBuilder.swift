@@ -9,7 +9,6 @@ import Foundation
 
 enum ApiBuilder: String {
     case token = "bf15ca58-d49b-4aed-8ba2-79b3ece545fd"
-    case baseURL = "https://kinopoiskapiunofficial.tech/"
     
     static func topList(page: Int) -> URL? {
         var components = URLComponents()
@@ -28,7 +27,6 @@ enum ApiBuilder: String {
         components.scheme = "https"
         components.host = "kinopoiskapiunofficial.tech"
         components.path = "/api/v2.2/films/\(id)"
-      
         return components.url
     }
     

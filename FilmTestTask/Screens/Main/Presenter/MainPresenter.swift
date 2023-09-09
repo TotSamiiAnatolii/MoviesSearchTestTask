@@ -21,6 +21,8 @@ protocol MainMoviesListPresenterProtocol: AnyObject {
     
     func viewDidLoad()
     
+    func warmCache(model: [URL?])
+    
     func supplement()
 }
 extension MainMoviesListPresenterProtocol {
@@ -58,19 +60,13 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
         view?.setViewState(stateView: stateView)
         getListMovie()
     }
-    
+        
     func getListMovie(page: Int = 1) {
         view?.noInternetAlertManagement(isHidden: true)
         filmAPIManager.getTopListMovies(page: page) { result in
             switch result {
             case .success(let success):
-                let poster = success.films.map{URL(string: $0.posterUrlPreview)}
-                
-                poster.forEach { film in
-                    guard let film = film else { return }
-                    ImageDownloader.shared.warmCache(with: film)
-                }
-                
+                self.warmCache(model: success.films.map{URL(string: $0.posterUrlPreview)})
                 DispatchQueue.main.async {
                     self.pagingFile.pageCount = success.pagesCount
                     self.stateView = .populated(self.mapper.map(models: success.films))
@@ -94,5 +90,12 @@ final class MainMoviesListPresenter: MainMoviesListPresenterProtocol {
     func supplement() {
         stateView = .paging
         pagingFile.hasMorePages ? getListMovie(page: pagingFile.nextPage()) : view?.controlActivityIndicator(indicator: .paging(.stopAnimating))
+    }
+    
+    func warmCache(model: [URL?]) {
+        model.forEach { film in
+            guard let film = film else { return }
+            ImageDownloader.shared.warmCache(with: film)
+        }
     }
 }

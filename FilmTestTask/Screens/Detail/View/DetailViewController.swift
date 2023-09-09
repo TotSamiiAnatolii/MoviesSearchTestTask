@@ -49,6 +49,7 @@ final class DetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        activityIndicator.controlActivityIndicator(state: .startAnimating)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
@@ -68,10 +69,11 @@ extension DetailViewController: DetailMovieViewProtocol {
     }
     
     func failure() {
-        
+        activityIndicator.controlActivityIndicator(state: .stopAnimating)
     }
     
     func configureView(model: DetailModel) {
+        activityIndicator.controlActivityIndicator(state: .stopAnimating)
         poster.loadImage(urlString: model.poster, placeholder: UIImage())
         movieTitle.text = model.movieTitle
         filmDescription.text = model.description

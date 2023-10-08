@@ -17,8 +17,6 @@ protocol SearchMoviesPresenterProtocol {
     
     func popToRoot()
     
-    func viewDidLoad()
-    
     func setViewState()
 }
 
@@ -42,11 +40,7 @@ final class SearchMoviesPresenter: SearchMoviesPresenterProtocol {
         self.filmAPIManager = filmAPIManager
         self.router = router
     }
-    
-    func viewDidLoad() {
-        
-    }
-    
+  
     func showDetailMovie(id: Int) {
         router.showMovie(id: id)
     }
